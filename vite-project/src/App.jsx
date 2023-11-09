@@ -6,7 +6,7 @@ import LoginPage from './page/LoginPage.jsx';
 import UploadPage from './page/UploadPage.jsx';
 import ContributePage from './page/ContributePage.jsx';
 
-function App() {
+const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
@@ -16,6 +16,12 @@ function App() {
                 <Route path="/Contributepage" element={<ContributePage />} />
             </Routes>
         </BrowserRouter>
+    );
+};
+
+function App() {
+    return (
+        <Router />
     );
 }
 
