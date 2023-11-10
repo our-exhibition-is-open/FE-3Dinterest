@@ -1,29 +1,52 @@
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from 'styled-components';
 
 const Header = styled.header`
         display: flex;
         height: 30px;
-        padding: 15px 14px;
+        padding: 20px 20px 9px;
         justify-content: flex-end;
         align-items: flex-start;
         gap: 10px;
     
         background-color: #ffffff;
-        box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 0px 10px 0.1px rgba(0, 0, 0, 0.25);
     `;
 
-const Button = styled.div`
-    width: 65px;
-    height: 28px;
+const Button = styled.h1`
+    cursor: pointer;
 
+    width: 70px;
+    height: 28px;
+    display: inline-block; 
+    position: relative;
+
+    text-decoration: none;
     color: #000;
     text-align: center;
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+
+    font-family: "SF-Pro-Rounded-Regular";
+
+    &:after {
+        content: "";
+        display: block;
+        width: 100%; height: 2px;
+        background: #000;
+        transition: all 0.1s;
+    }
+    &:after {
+        transform: scaleX(0);
+    }
+    &:hover:after {
+        transform: scaleX(0.8);
+    }
+
 `;
 
 
@@ -38,10 +61,15 @@ export function NavigationBar() {
 }
 
 function LoginButton() {
+    const [hoverBool, setHoverBool] = useState(false);
     const navigate = useNavigate();
     
     function handleClick() {
         navigate('/loginpage');
+    }
+
+    function handleHovering() {
+        setHoverBool()
     }
     
     return(
@@ -59,9 +87,9 @@ function UploadButton() {
     }
 
     return(
-        <div onClick={handleClick}>
+        <Button onClick={handleClick}>
             업로드
-        </div>
+        </Button>
     );
 }
 
@@ -73,8 +101,8 @@ function ContributeButton() {
     }
     
     return(
-        <div onClick={handleClick}>
+        <Button onClick={handleClick}>
             컨트리뷰트
-        </div>
+        </Button>
     );
 }
