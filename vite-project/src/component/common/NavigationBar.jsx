@@ -1,32 +1,58 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { styled } from 'styled-components';
 
-const navigate = useNavigate();
+const Header = styled.header`
+        display: flex;
+        height: 30px;
+        padding: 15px 14px;
+        justify-content: flex-end;
+        align-items: flex-start;
+        gap: 10px;
+    
+        background-color: #ffffff;
+        box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.25);
+    `;
 
-export default function NavigationBar() {
+const Button = styled.div`
+    width: 65px;
+    height: 28px;
+
+    color: #000;
+    text-align: center;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+`;
+
+
+export function NavigationBar() {
     return (
-        <div>
+        <Header>
             <LoginButton />
             <UploadButton />
             <ContributeButton />
-        </div> 
+        </Header>
     )
 }
 
 function LoginButton() {
+    const navigate = useNavigate();
     
     function handleClick() {
         navigate('/loginpage');
     }
     
     return(
-        <div onClick={handleClick}>
+        <Button onClick={handleClick}>
             로그인
-        </div>
+        </Button>
     );
 }
 
 function UploadButton() {
+    const navigate = useNavigate();
     
     function handleClick() {
         navigate('/uploadpage');
@@ -40,6 +66,7 @@ function UploadButton() {
 }
 
 function ContributeButton() {
+    const navigate = useNavigate();
 
     function handleClick() {
         navigate('/contributepage');
