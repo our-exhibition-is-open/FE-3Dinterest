@@ -47,62 +47,30 @@ const Button = styled.h1`
         transform: scaleX(0.8);
     }
 
-`;
+`
 
+function ButtonComponent(props) {
+    const navigate = useNavigate();
+    const buttonName = props.buttonName;
+    const route = props.route;
+    
+    function handleClick() {
+        navigate(route);
+    }
+
+    return(
+        <Button onClick={handleClick}>
+            {buttonName}
+        </Button>
+    );
+}
 
 export function NavigationBar() {
     return (
         <Header>
-            <LoginButton />
-            <UploadButton />
-            <ContributeButton />
+            <ButtonComponent route="/loginpage" buttonName="로그인"/>
+            <ButtonComponent route="/loginpage" buttonName="업로드"/>
+            <ButtonComponent route="/loginpage" buttonName="컨트리뷰트"/>
         </Header>
     )
-}
-
-function LoginButton() {
-    const [hoverBool, setHoverBool] = useState(false);
-    const navigate = useNavigate();
-    
-    function handleClick() {
-        navigate('/loginpage');
-    }
-
-    function handleHovering() {
-        setHoverBool()
-    }
-    
-    return(
-        <Button onClick={handleClick}>
-            로그인
-        </Button>
-    );
-}
-
-function UploadButton() {
-    const navigate = useNavigate();
-    
-    function handleClick() {
-        navigate('/uploadpage');
-    }
-
-    return(
-        <Button onClick={handleClick}>
-            업로드
-        </Button>
-    );
-}
-
-function ContributeButton() {
-    const navigate = useNavigate();
-
-    function handleClick() {
-        navigate('/contributepage');
-    }
-    
-    return(
-        <Button onClick={handleClick}>
-            컨트리뷰트
-        </Button>
-    );
 }
