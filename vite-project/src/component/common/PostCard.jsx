@@ -17,12 +17,12 @@ const PostWrapper = styled.div`
     flex-direction: column;
     width: 210px;
     height: 373px;
-    border-radius: 0.9375rem;
+    border-radius: 1rem;
     overflow: hidden;
 `
 
 const ImageWrapper = styled.img`
-    border-radius: 0.9375rem;
+    border-radius: 1rem;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -43,7 +43,9 @@ const TitleWrapper = styled.div`
 `
 
 export function PostCard(props) {
-    
+    const post = props.post
+    const imageUrl = props.imageUrl;
+    const title = props.title
     return (
         <>
         <Container>
