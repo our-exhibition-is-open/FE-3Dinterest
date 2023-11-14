@@ -112,10 +112,10 @@ const ContributeContainer = styled.div`
     background-color: #ffffff;
     width: 100%;
     border-radius: 0rem 1.5rem 1.5rem 0;
-    gap: 0.3rem;
+    gap: 0.1rem;
     align-items: center;
-    overflow: hidden;
-    
+    overflow: scroll;
+    padding-bottom: 2.19rem;
 `
 
 export function PostModal(props) {
@@ -125,11 +125,10 @@ export function PostModal(props) {
     //TODO: 컨트리뷰트 api로 변경하기
 
     const postComponentList = postList.map((post, index) => 
-        <>
         <div onClick={()=>{handlePostClick(post.post)}} key={index}>
                 <ContributePost post={post} />
         </div>
-        </>
+
     );
 
     function handlePostClick(post) {

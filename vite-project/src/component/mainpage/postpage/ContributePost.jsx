@@ -5,29 +5,36 @@ import { styled } from 'styled-components';
 import * as THREE from 'three';
 
 
+const BackgroundContainer = styled.div`
+    background-color: black;
+    height: 12.8125rem;
+    border-radius: 0.9rem;
+`
+
 const ImageWrapper = styled.img`
+    z-index: 1003;
     cursor: pointer;
     border-radius: 1rem;
     width: 100%;
     height: 100%;
-    object-fit: cover;`
+    object-fit: cover;
+`
 
 export const TitleWrapper = styled.div`
-    z-index: 1003;
+    z-index: 1010;
     cursor: pointer;
     width: 14.75rem;
     height: 1.1875rem;
 
-    color: #870b0b;
+    color: #000000;
     font-family: "SF-Pro-Rounded-Regular";
-    font-size: 1rem;
+    font-size: 0.83rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     letter-spacing: 0.02844rem;
-
-    position: relative;
-    visibility: hidden;
+    margin-top: 4px;
+    margin-left: 2px;
 `
 
 const PostContainer = styled.div`
@@ -37,19 +44,13 @@ const PostContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 13.3125rem;
-    height: 13.8125rem;
-    border-radius: 0.9rem;
+    height: 14.8125rem;
     overflow: hidden;
-    background-color: black;
-    margin-top: 2.19rem;
     
-    /* filter: ${(props) => props.onBlur ? "blur(10px)" : "blur(0px)"}; */
+    
     &:hover {
         ${ImageWrapper}{
-            opacity:0.6;
-        }
-        ${TitleWrapper}{
-            visibility: visible;
+            opacity:0.8;
         }
     }
 `
@@ -61,7 +62,9 @@ export function ContributePost(props) {
     return (
         <>
             <PostContainer> 
-                <ImageWrapper src={post.imageUrl} />
+                <BackgroundContainer>
+                    <ImageWrapper src={post.imageUrl} />
+                </BackgroundContainer>
                 <TitleWrapper >{post.title}</TitleWrapper>
             </PostContainer>
         </>
