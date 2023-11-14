@@ -43,7 +43,9 @@ const TitleWrapper = styled.div`
 `
 
 export function PostCard(props) {
-    
+    const post = props.post
+    const imageUrl = props.imageUrl;
+    const title = props.title
     return (
         <>
         <Container>
