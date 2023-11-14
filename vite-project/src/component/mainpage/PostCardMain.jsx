@@ -3,37 +3,18 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from 'styled-components';
 import * as THREE from 'three';
+import { ModalBackground, PostModal} from "./postpage/PostModal";
 
-
-const Container = styled.div`
-    position: relative;
-`;
-
-const PostWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 14.75rem;
-    height: 14.75rem;
-    border-radius: 1rem;
-    overflow: hidden;
-    background-color:rgba(0, 0, 0);
-
-    /* position: relative; */
-`;
 
 const ImageWrapper = styled.img`
     cursor: pointer;
     border-radius: 1rem;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover;`
 
-    &:hover {
-        opacity:0.8;
-    }
-`
-
-const TitleWrapper = styled.div`
+export const TitleWrapper = styled.div`
+    cursor: pointer;
     width: 14.75rem;
     height: 1.1875rem;
 
@@ -48,24 +29,66 @@ const TitleWrapper = styled.div`
     position: absolute;
     left: 10%;
     top: 10%;
-
+    visibility: hidden;
 `
 
-export function PostCard2(props) {
-    const [isHovering, setHovering] = useState(false);
-    const hiddenTitle = isHovering ? <TitleWrapper >{props.title}</TitleWrapper> : <TitleWrapper ></TitleWrapper>;
+const PostContainer = styled.div`
+    z-index: 0;
 
-    console.log(props.title);
-    function handleHovering(){
-        setHovering(!isHovering);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 14.75rem;
+    height: 14.75rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: black;
+    
+    &:hover {
+        ${ImageWrapper}{
+            opacity:0.6;
+        }
+        ${TitleWrapper}{
+            visibility: visible;
+        }
+    }
+`
+
+
+export function PostCardMain(props) {
+    const post = props.post
+    const [isClicked, setClicked] = useState(false);
+
+    function handleClick() {
+        setClicked(!isClicked);
+    }
+    console.log(isClicked);
+
+    if(isClicked)
+    {
+        document.body.style.overflow = 'hidden';
+    }
+    else
+    {
+        document.body.style.overflow = 'auto';
     }
 
+
     return (
-        <Container>
-        <PostWrapper onMouseOver={handleHovering} onMouseLeave={handleHovering}>
-            <ImageWrapper src={props.imgUrl} />
-        </PostWrapper>
-            {hiddenTitle}
-        </Container>
+        <>
+            <PostContainer onClick={handleClick}> 
+                <ImageWrapper src={post.imageUrl} />
+                <TitleWrapper >{post.title}</TitleWrapper>
+            </PostContainer>
+
+        {isClicked && (
+            <>
+                <ModalBackground onClick={handleClick}>
+                <PostModal post={props.post}/>
+                </ModalBackground>
+            </>
+        )}
+        </>
+        
     );
 }
