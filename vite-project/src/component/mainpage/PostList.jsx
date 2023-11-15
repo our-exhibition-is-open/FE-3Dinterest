@@ -9,6 +9,7 @@ const Container = styled.div`
     z-index: 0;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     margin-top: 0%;
     gap: 1rem;
