@@ -1,7 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { styled } from 'styled-components';
-import { ButtonComponent } from "./ButtonComponent";
+
+import { Button, ButtonComponent } from "./ButtonComponent";
+import { ModalBackground, PostModal } from "../mainpage/modal/PostModal";
+import { Link } from "react-router-dom";
 
 const Header = styled.header`
         z-index: 10;
@@ -23,11 +26,41 @@ const Header = styled.header`
 `;
 
 export function NavigationBar() {
+    const [isClicked, setClicked] = useState(false);
+    
+    function handleClick() {
+        setClicked(!isClicked);
+    }
+
+    if(isClicked)
+    {
+        document.body.style.overflow = 'hidden';
+    }
+    else
+    {
+        document.body.style.overflow = 'auto';
+    }
+    
     return (
+        <>
         <Header>
-            <ButtonComponent route="/loginpage" buttonName="로그인"/>
-            <ButtonComponent route="/uploadpage" buttonName="업로드"/>
-            <ButtonComponent route="/contributepage" buttonName="컨트리뷰트"/>
+            <div>
+                <ButtonComponent buttonName="로그인" route="/login" />
+            </div>
+            <Button>
+                <Link to="/register" style={{ color: "black",textDecoration: "none"}}>회원가입</Link>
+            </Button>
+            <div>
+                <ButtonComponent buttonName="업로드" route="/upload"/>
+            </div>
+
+            {isClicked && (
+            <ModalBackground onClick={handleClick}/>
+            
+        )
+        }
         </Header>
+        
+        </>
     )
 }
