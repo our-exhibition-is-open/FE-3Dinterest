@@ -1,4 +1,3 @@
-
 import React, { Suspense } from "react";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
@@ -22,7 +21,7 @@ export const ModalBackground = styled.div`
     right: 0;
     /* justify-content: center;
     align-items: center; */
-    background:#ffffff2f;
+    background:#0000002e;
     
     backdrop-filter: blur(6px);
 `
@@ -38,17 +37,12 @@ const ModalContainer = styled.div`
     justify-self: center;
     justify-content: center;
     position: fixed;
-    /* margin: 0 auto; // vertical centering */
     top: 0;
-    
     bottom: 0;
     margin-top: auto;
     margin-bottom: auto;
     border-radius: 1.5rem;
     background: #FFF;
-
-    
-    
 `
 
 const ModalPostContainer = styled.div`
@@ -65,8 +59,6 @@ const PostCanvas = styled.div`
     width: 39.375rem;
     height: 29.875rem;
     flex-shrink: 0;
-    /* background: #D9D9D9; */
-
     position: static;
     margin-top: 2.06rem;
     margin-left: 1.37rem;
@@ -74,7 +66,6 @@ const PostCanvas = styled.div`
 const Title = styled.div`
     width: 29rem;
     height: 1.9375rem;
-    
     color: #000;
     font-family: "San Francisco";
     font-size: 1.5625rem;
@@ -89,7 +80,6 @@ const Title = styled.div`
 const InfoContainer = styled.div`
     display: flex;
     flex-direction: row;
-
     width: 29rem;
     height: 1.375rem;
     margin-top: 0.31rem;

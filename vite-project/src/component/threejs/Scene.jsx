@@ -9,7 +9,7 @@ export function Scene(props) {
   const cameraControlRef = useRef(CameraControls, null);
 
   return (
-    <Canvas camera={{position: [15,10,15]}}shadows style={{ borderRadius: 25 }}>
+    <Canvas camera={{position: [23,10,25]}}shadows style={{ borderRadius: 25 }}>
         <color attach="background" args={["black"]}/>
         <CameraControls ref={cameraControlRef}/>
         <directionalLight intensity={0.8} position={[3,3,1]}/>
