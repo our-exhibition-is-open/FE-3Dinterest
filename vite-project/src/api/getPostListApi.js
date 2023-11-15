@@ -6,7 +6,7 @@ function getPostListApi(userId) {
     // const jsonList = await instance.get('/getpostlist');
     // const dataList = JSON.parse(jsonList);
     const dataList = datas;
-    const postList = dataList.map(data => new PostModel(data));
+    const postList = dataList.map(data=> new PostModel(data) );
 
     return postList;
 }
