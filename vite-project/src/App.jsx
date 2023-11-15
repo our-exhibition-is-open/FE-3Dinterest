@@ -10,10 +10,10 @@ function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/mainpage" element={<MainPage />} />
-                <Route path="/loginpage" element={<LoginPage />} />
-                <Route path="/uploadpage" element={<UploadPage />} />
-                <Route path="/contributepage" element={<ContributePage />} />
+                <Route path="/" element={<MainPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/upload" element={<UploadPage />} />
+                <Route path="/contribute" element={<ContributePage />} />
             </Routes>
         </BrowserRouter>
     );
