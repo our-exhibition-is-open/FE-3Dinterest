@@ -1,9 +1,12 @@
 
-import React from "react";
+import React, { Suspense } from "react";
 import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-
+import { CameraControls } from '@react-three/drei';
+import { useLoader } from "@react-three/fiber";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { getPostListApi } from "../../../api/getPostListApi";
+
 import { ContributePost } from "./ContributePost";
 import { Scene } from "../../threejs/Scene";
 
@@ -126,17 +129,14 @@ const ContributeContainer = styled.div`
 
 export function PostModal(props) {
     const [postState, setPostState] = useState(props.post);
-    
     const postList = getPostListApi(23);
     //TODO: 컨트리뷰트 api로 변경하기
-
     const postComponentList = postList.map((post, index) => 
         <div onClick={()=>{handlePostClick(post); console.log("imclicked")}} key={index}>
                 <ContributePost post={post} />
         </div>
-
     );
-
+    
     function handlePostClick(post) {
         setPostState(post);
         console.log(post.user);
@@ -148,7 +148,9 @@ export function PostModal(props) {
             <ModalContainer>
                     <ModalPostContainer>
                         <PostCanvas>
-                            <Scene/>
+                            <Suspense>
+                                <Scene/>
+                            </Suspense>
                         </PostCanvas>
                         <Title>{postState.title}</Title>
                         <InfoContainer>
