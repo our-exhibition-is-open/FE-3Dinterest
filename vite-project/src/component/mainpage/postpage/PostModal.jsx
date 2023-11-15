@@ -1,9 +1,11 @@
+
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { getPostListApi } from "../../../api/getPostListApi";
 import { ContributePost } from "./ContributePost";
+import { Scene } from "../../threejs/Scene";
 
 
 export const ModalBackground = styled.div`
@@ -54,11 +56,11 @@ const ModalPostContainer = styled.div`
 
 `
 const PostCanvas = styled.div`
-    z-index: 1003;
+    z-index: 1002;
     width: 39.375rem;
     height: 29.875rem;
     flex-shrink: 0;
-    background: #D9D9D9;
+    /* background: #D9D9D9; */
 
     position: static;
     margin-top: 2.06rem;
@@ -146,7 +148,7 @@ export function PostModal(props) {
             <ModalContainer>
                     <ModalPostContainer>
                         <PostCanvas>
-
+                            <Scene/>
                         </PostCanvas>
                         <Title>{postState.title}</Title>
                         <InfoContainer>
