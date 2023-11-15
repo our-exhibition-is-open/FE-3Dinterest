@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from 'styled-components';
 import * as THREE from 'three';
-import { ModalBackground, PostModal} from "./postpage/PostModal";
+import { ModalBackground, PostModal} from "./modal/PostModal";
 
 
 const ImageWrapper = styled.img`
@@ -77,10 +77,11 @@ export function PostCardMain(props) {
         setClicked(true);
         console.log("33333333");
     }
+    
     return (
         <>
-            <PostContainer onClick={handlePostClick}> 
-                <ImageWrapper src={post.imageUrl} />
+            <PostContainer > 
+                <ImageWrapper src={post.imageUrl} onClick={handlePostClick}/>
                 <TitleWrapper >{post.title}</TitleWrapper>
             </PostContainer>
 

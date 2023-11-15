@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import MainPage from './page/MainPage.jsx';
 import LoginPage from './page/LoginPage.jsx';
+import { RegisterPage } from './page/RegisterPage.jsx';
 import UploadPage from './page/UploadPage.jsx';
 import ContributePage from './page/ContributePage.jsx';
 
@@ -10,10 +11,11 @@ function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/mainpage" element={<MainPage />} />
-                <Route path="/loginpage" element={<LoginPage />} />
-                <Route path="/uploadpage" element={<UploadPage />} />
-                <Route path="/contributepage" element={<ContributePage />} />
+                <Route path="/" element={<MainPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/upload" element={<UploadPage />} />
+                <Route path="/contribute" element={<ContributePage />} />
             </Routes>
         </BrowserRouter>
     );

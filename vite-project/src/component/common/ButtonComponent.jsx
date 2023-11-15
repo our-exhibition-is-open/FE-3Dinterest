@@ -1,9 +1,10 @@
 import React from "react";
+
 import { useNavigate } from "react-router-dom";
 import { styled } from 'styled-components';
 
 
-const Button = styled.h1`
+export const Button = styled.h1`
     cursor: pointer;
 
     width: 70px;
@@ -34,10 +35,11 @@ const Button = styled.h1`
     &:hover:after {
         transform: scaleX(0.8);
     }
-`;
+`
 
 export function ButtonComponent(props) {
     const navigate = useNavigate();
+    
     const buttonName = props.buttonName;
     const route = props.route;
     
