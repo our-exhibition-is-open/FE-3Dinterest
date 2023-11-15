@@ -22,7 +22,7 @@ export const ModalBackground = styled.div`
     right: 0;
     /* justify-content: center;
     align-items: center; */
-    background:#ffffff2f; 
+    background:#ffffff2f;
     
     backdrop-filter: blur(6px);
 `
@@ -46,6 +46,8 @@ const ModalContainer = styled.div`
     margin-bottom: auto;
     border-radius: 1.5rem;
     background: #FFF;
+
+    
     
 `
 
@@ -125,6 +127,10 @@ const ContributeContainer = styled.div`
     align-items: center;
     overflow: scroll;
     padding-top: 2.19rem;
+    
+    &::-webkit-scrollbar {
+    display: none;
+    }
 `
 
 export function PostModal(props) {

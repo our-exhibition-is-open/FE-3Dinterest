@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from 'styled-components';
 import * as THREE from 'three';
-import { ModalBackground, PostModal} from "./postpage/PostModal";
+import { ModalBackground, PostModal} from "./modal/PostModal";
 
 
 const ImageWrapper = styled.img`
