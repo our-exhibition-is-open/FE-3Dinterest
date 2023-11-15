@@ -21,15 +21,15 @@ export const datas = [
         modelUrl:"https://i.pinimg.com/474x/76/34/55/7634550e3a215d2da8dc659b174b2689.jpg",
         title: "한국어 조아",
         user:"123456789",
-        postId:0,
+        postId:1,
         uploadTime: "asdfsadf-asdff"
 },
 {
     imageUrl:"https://i.pinimg.com/564x/ad/a2/f5/ada2f596ecdbe72f079ee1e6cd30bd00.jpg",
     modelUrl:"https://i.pinimg.com/474x/76/34/55/7634550e3a215d2da8dc659b174b2689.jpg",
-    title: "한국어 조아",
+    title: "한국어 안조아",
     user:"adsf",
-    postId:0,
+    postId:1,
     uploadTime: "asdfsadf-asdff"
 },
 {
@@ -37,15 +37,15 @@ export const datas = [
     modelUrl:"https://i.pinimg.com/474x/76/34/55/7634550e3a215d2da8dc659b174b2689.jpg",
     title: "한국어 조아",
     user:"adsf",
-    postId:0,
+    postId:1,
     uploadTime: "asdfsadf-asdff"
 },
 {
     imageUrl:"https://i.pinimg.com/474x/a4/d8/47/a4d847c88f5f02ab34d0768b60cae2e0.jpg",
     modelUrl:"https://i.pinimg.com/474x/76/34/55/7634550e3a215d2da8dc659b174b2689.jpg",
-    title: "한국어 조아",
+    title: "한국어 안조아",
     user:"adsf",
-    postId:0,
+    postId:1,
     uploadTime: "asdfsadf-asdff"
 },
 {
@@ -59,7 +59,7 @@ export const datas = [
 {
     imageUrl:"https://i.pinimg.com/474x/d7/8b/c7/d78bc797197012cf6dd6b90ab039dd1a.jpg",
     modelUrl:"https://i.pinimg.com/474x/76/34/55/7634550e3a215d2da8dc659b174b2689.jpg",
-    title: "한국어 조아",
+    title: "한국어 안조아",
     user:"adsf",
     postId:0,
     uploadTime: "asdfsadf-asdff"
@@ -75,7 +75,7 @@ export const datas = [
 {
     imageUrl:"https://i.pinimg.com/474x/43/e2/d0/43e2d072cb46f66129cb67127c46ad52.jpg",
     modelUrl:"https://i.pinimg.com/474x/76/34/55/7634550e3a215d2da8dc659b174b2689.jpg",
-    title: "한국어 조아",
+    title: "한국어 안조아",
     user:"adsf",
     postId:0,
     uploadTime: "asdfsadf-asdff"
@@ -91,7 +91,7 @@ export const datas = [
 {
     imageUrl:"https://i.pinimg.com/474x/c9/ce/16/c9ce163cb5cc319b4e7be1ae031aeda2.jpg",
     modelUrl:"https://i.pinimg.com/474x/76/34/55/7634550e3a215d2da8dc659b174b2689.jpg",
-    title: "한국어 조아",
+    title: "한국어 안조아",
     user:"adsf",
     postId:0,
     uploadTime: "asdfsadf-asdff"

@@ -155,7 +155,7 @@ export function PostModal(props) {
                     <ModalPostContainer>
                         <PostCanvas>
                             <Suspense>
-                                <Scene/>
+                                <Scene gltfUrl={postState.modelUrl}/>
                             </Suspense>
                         </PostCanvas>
                         <Title>{postState.title}</Title>

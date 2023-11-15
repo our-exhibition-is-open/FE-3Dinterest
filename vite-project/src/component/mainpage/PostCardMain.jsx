@@ -77,19 +77,20 @@ export function PostCardMain(props) {
         setClicked(true);
         console.log("33333333");
     }
+    //TODO:onClick={handlePostClick} 삭제함 postcontainer에 있었음
     return (
         <>
-            <PostContainer onClick={handlePostClick}> 
+            <PostContainer > 
                 <ImageWrapper src={post.imageUrl} />
                 <TitleWrapper >{post.title}</TitleWrapper>
             </PostContainer>
 
-        {isClicked && (
+        {/* {isClicked && (
             <>
                 <ModalBackground onClick={handleBackgroundClick} />
                 <PostModal post={props.post}/>
             </>
-        )}
+        )} */}
         </>
         
     );
