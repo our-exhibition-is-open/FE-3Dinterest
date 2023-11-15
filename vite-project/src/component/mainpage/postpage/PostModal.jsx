@@ -1,36 +1,39 @@
+
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import { PostCardMain } from "../PostCardMain";
-import { TitleWrapper } from "../PostCardMain";
 import { getPostListApi } from "../../../api/getPostListApi";
-import { ContributePost } from "./ContributePost"
+import { ContributePost } from "./ContributePost";
+import { Scene } from "../../threejs/Scene";
 
 
 export const ModalBackground = styled.div`
     display: flex;
     z-index: 1000;
-
+    
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     background:#ffffff2f; 
-    
     
     backdrop-filter: blur(6px);
 `
+
+//TODO: 나중에 레이아웃 변경하기, 자꾸 모달을 선택하면 뒷배경의 클릭 리스너가 실행됨
+//그래서 일단 임시적으로 뒷배경과 모달을 분리했음(자식 조상 끊음) -> 선택이 되지 않는 대신, 레이아웃 조깥아짐
 const ModalContainer = styled.div`
     display: flex;
     z-index: 1001;
     flex-direction: row;
     width: 55.6875rem;
     height: 41.875rem;
-    
+    justify-self: center;
+    justify-content: center;
     position: fixed;
     /* margin: 0 auto; // vertical centering */
     top: 0;
@@ -40,10 +43,12 @@ const ModalContainer = styled.div`
     margin-bottom: auto;
     border-radius: 1.5rem;
     background: #FFF;
+    
 `
 
 const ModalPostContainer = styled.div`
     display: flex;
+    z-index: 1002;
     flex-direction: column;
     align-items: flex-start;
     height: 41.875rem;
@@ -51,10 +56,11 @@ const ModalPostContainer = styled.div`
 
 `
 const PostCanvas = styled.div`
+    z-index: 1002;
     width: 39.375rem;
     height: 29.875rem;
     flex-shrink: 0;
-    background: #D9D9D9;
+    /* background: #D9D9D9; */
 
     position: static;
     margin-top: 2.06rem;
@@ -112,10 +118,10 @@ const ContributeContainer = styled.div`
     background-color: #ffffff;
     width: 100%;
     border-radius: 0rem 1.5rem 1.5rem 0;
-    gap: 0.3rem;
+    gap: 0.5rem;
     align-items: center;
-    overflow: hidden;
-    
+    overflow: scroll;
+    padding-top: 2.19rem;
 `
 
 export function PostModal(props) {
@@ -125,23 +131,24 @@ export function PostModal(props) {
     //TODO: 컨트리뷰트 api로 변경하기
 
     const postComponentList = postList.map((post, index) => 
-        <>
-        <div onClick={()=>{handlePostClick(post.post)}} key={index}>
+        <div onClick={()=>{handlePostClick(post); console.log("imclicked")}} key={index}>
                 <ContributePost post={post} />
         </div>
-        </>
+
     );
 
     function handlePostClick(post) {
         setPostState(post);
+        console.log(post.user);
     }
 
     return (
         <>
+        
             <ModalContainer>
                     <ModalPostContainer>
                         <PostCanvas>
-
+                            <Scene/>
                         </PostCanvas>
                         <Title>{postState.title}</Title>
                         <InfoContainer>
@@ -152,7 +159,8 @@ export function PostModal(props) {
                     <ContributeContainer>
                         {postComponentList}
                     </ContributeContainer>
-                </ModalContainer>
+            </ModalContainer>
+        
         </>
     )
 }

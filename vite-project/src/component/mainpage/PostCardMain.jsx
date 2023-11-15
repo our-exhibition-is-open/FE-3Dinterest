@@ -56,13 +56,8 @@ const PostContainer = styled.div`
 
 
 export function PostCardMain(props) {
-    const post = props.post
+    const post = props.post;
     const [isClicked, setClicked] = useState(false);
-
-    function handleClick() {
-        setClicked(!isClicked);
-    }
-    console.log(isClicked);
 
     if(isClicked)
     {
@@ -73,19 +68,26 @@ export function PostCardMain(props) {
         document.body.style.overflow = 'auto';
     }
 
+    function handleBackgroundClick() {
+        setClicked(false);
+        console.log("im clicked 2222");
 
+    }
+    function handlePostClick() {
+        setClicked(true);
+        console.log("33333333");
+    }
     return (
         <>
-            <PostContainer onClick={handleClick}> 
+            <PostContainer onClick={handlePostClick}> 
                 <ImageWrapper src={post.imageUrl} />
                 <TitleWrapper >{post.title}</TitleWrapper>
             </PostContainer>
 
         {isClicked && (
             <>
-                <ModalBackground onClick={handleClick}>
+                <ModalBackground onClick={handleBackgroundClick} />
                 <PostModal post={props.post}/>
-                </ModalBackground>
             </>
         )}
         </>

@@ -20,7 +20,7 @@ export const datas = [
         imageUrl:"https://i.pinimg.com/474x/76/34/55/7634550e3a215d2da8dc659b174b2689.jpg",
         modelUrl:"https://i.pinimg.com/474x/76/34/55/7634550e3a215d2da8dc659b174b2689.jpg",
         title: "한국어 조아",
-        user:"adsf",
+        user:"123456789",
         postId:0,
         uploadTime: "asdfsadf-asdff"
 },
