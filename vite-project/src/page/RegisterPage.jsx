@@ -35,7 +35,7 @@ export function RegisterPage() {
         setValue(value);
     }
     function onChangeProper() {
-
+        
     }
 
     return (
