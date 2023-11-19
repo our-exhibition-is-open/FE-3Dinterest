@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { checkingValue } from "../../util/register/checkingValue";
 
 const Message = styled.div`
     justify-self: left;
@@ -15,51 +15,41 @@ const Message = styled.div`
     letter-spacing: 0.02844rem;
 `
 
-const InputContainer = styled.div`
-    justify-content: center;
-    /* background: #D9D9D9; */
-`
-
 const Input = styled.input`
     width: 268px;
     height: 38px;
     background: #D9D9D9;
 `
 
-export function InputComponent(props) {
-    const [value, setValue] = useState("");
-    const [message, setMessage] = useState("");
-    const [isProper, setIsProper] = useState(false);
-    
-    const inputType = props.inputType;
-    const checkingExp = props.checkingExp ?? null;
-    const checkingFunc = props.checkingFunc ?? null;
+const InputContainer = styled.div`
+    justify-content: center;
+    justify-items: left;
+`
 
-    const handleonChangeValue2 = props.handleOnChange;
-    // console.log(checkingExp);
+export function InputComponent2({inputType, type, onChangeValue, value, placeholder}) {
+    const [isProper, setIsProper] = useState(false)
 
-    // function handlingOnChangeValue(e) {
-    //     const currentValue = e.target.value;
-    //     setValue(currentValue);
-    //     if(!checkingExp.test(currentValue) && checkingFunc(currentValue))
-    //     {
-    //         setMessage("다시 입력하세요");
-    //         setIsProper(false);
-    //     }
-    //     else
-    //     {
-    //         setMessage("굿");
-    //         setIsProper(true);
-    //     }
-    // }
+    function updateValue(e) {
+        value[type] = e.target.value;
+        console.log(value);
+        onChangeValue(value);
+        if(checkingValue(value, type))
+        {
+            setIsProper(true);
+            
+        }
+    }
+
+    //true 일 때 마다 카운트 세기 상위 컴포넌트에서 카운트 스테이트 나중에 추가하기.
 
     return (
         <>
         <InputContainer>
-            <Input type={inputType} value={value} onChange={(e) => handleonChangeValue2(e, checkingExp, checkingExp)}>
-            </Input>
+            <Input type={inputType} placeholder={placeholder} onChange={(e) => updateValue(e)}/>
+            { 
+                <div>{isProper ? <Message>굿</Message> : <Message>노굿</Message>}</div>
+            }
         </InputContainer>
-            <Message>{message}</Message>
         </>
     )
 }
