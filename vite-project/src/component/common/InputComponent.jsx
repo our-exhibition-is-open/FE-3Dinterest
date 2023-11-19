@@ -16,42 +16,50 @@ const Message = styled.div`
 `
 
 const InputContainer = styled.div`
-    width: 20rem;
+    justify-content: center;
+    /* background: #D9D9D9; */
+`
+
+const Input = styled.input`
+    width: 268px;
+    height: 38px;
+    background: #D9D9D9;
 `
 
 export function InputComponent(props) {
     const [value, setValue] = useState("");
     const [message, setMessage] = useState("");
     const [isProper, setIsProper] = useState(false);
-    // const [inputType, setInputType] = useState("");
-    // const [checkingExp, setChckingExp] = useState("");
+    
     const inputType = props.inputType;
-    const checkingExp = props.checkingExp;
-    const checkingFunc = props.checkingFunc;
+    const checkingExp = props.checkingExp ?? null;
+    const checkingFunc = props.checkingFunc ?? null;
+
+    const handleonChangeValue2 = props.handleOnChange;
     // console.log(checkingExp);
 
-    function handlingOnChangeValue(e) {
-        const currentValue = e.target.value;
-        setValue(currentValue);
-        if(!checkingExp.test(currentValue) && checkingFunc(currentValue))
-        {
-            setMessage("다시 입력하세요");
-            setIsProper(false);
-        }
-        else
-        {
-            setMessage("굿");
-            setIsProper(true);
-        }
-    }
+    // function handlingOnChangeValue(e) {
+    //     const currentValue = e.target.value;
+    //     setValue(currentValue);
+    //     if(!checkingExp.test(currentValue) && checkingFunc(currentValue))
+    //     {
+    //         setMessage("다시 입력하세요");
+    //         setIsProper(false);
+    //     }
+    //     else
+    //     {
+    //         setMessage("굿");
+    //         setIsProper(true);
+    //     }
+    // }
 
     return (
         <>
         <InputContainer>
-            <input type={inputType} value={value} onChange={(e) => handlingOnChangeValue(e)}>
-            </input>
-            <Message>{message}</Message>
+            <Input type={inputType} value={value} onChange={(e) => handleonChangeValue2(e, checkingExp, checkingExp)}>
+            </Input>
         </InputContainer>
+            <Message>{message}</Message>
         </>
     )
 }
