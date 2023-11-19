@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { checkingValue } from "../../util/register/checkingValue";
 
-const Message = styled.div`
-    justify-self: left;
-    margin-top: 0.4rem;
 
+const Message = styled.div`
     color: #000000;
     font-family: "SF-Pro-Rounded-Regular";
     font-size: 0.8rem;
@@ -15,40 +13,42 @@ const Message = styled.div`
     letter-spacing: 0.02844rem;
 `
 
+const MessageContainer = styled.div`
+    position: absolute;
+    top: 13px;
+    right: 1%;
+`
+
 const Input = styled.input`
-    width: 268px;
-    height: 38px;
-    background: #D9D9D9;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.4rem;
 `
 
 const InputContainer = styled.div`
+    width: 268px;   
+    height: 38px;
     justify-content: center;
-    justify-items: left;
+    position: relative;
 `
 
-export function InputComponent2({inputType, type, onChangeValue, value, placeholder}) {
-    const [isProper, setIsProper] = useState(false)
-
+export function InputComponent({inputType, type, onChangeValue, value, properCount, placeholder}) {
+    const [messageState, setMessageState] = useState(false);
     function updateValue(e) {
         value[type] = e.target.value;
-        console.log(value);
-        onChangeValue(value);
-        if(checkingValue(value, type))
-        {
-            setIsProper(true);
-            
-        }
+        onChangeValue(value, properCount, type);
+        setMessageState(properCount[type]);
     }
-
-    //true 일 때 마다 카운트 세기 상위 컴포넌트에서 카운트 스테이트 나중에 추가하기.
 
     return (
         <>
         <InputContainer>
             <Input type={inputType} placeholder={placeholder} onChange={(e) => updateValue(e)}/>
-            { 
-                <div>{isProper ? <Message>굿</Message> : <Message>노굿</Message>}</div>
-            }
+            <MessageContainer>
+                {messageState && 
+                    <Message>굿</Message>
+                }
+            </MessageContainer>
         </InputContainer>
         </>
     )
