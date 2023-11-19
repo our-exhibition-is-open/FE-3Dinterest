@@ -35,7 +35,7 @@ export function RegisterPage() {
         setValue(value);
     }
     function onChangeProper() {
-        
+
     }
 
     return (
@@ -43,9 +43,9 @@ export function RegisterPage() {
         <BodyContainer>
             <ContentsContainer>
                 <form> 
-                    <InputComponent2 inputType="text" type="id" onChangeValue={onChangeValue}  value={value} placeholder="id를 입력하세요"/>
-                    <InputComponent2 inputType="password" type="pw" onChangeValue={onChangeValue}  value={value} placeholder="password를 입력하세요"/>
-                    <InputComponent2 inputType="password" type="pwValid" onChangeValue={onChangeValue}  value={value} placeholder="password 재확인"/>
+                    <InputComponent inputType="text" type="id" onChangeValue={onChangeValue}  value={value} placeholder="id를 입력하세요"/>
+                    <InputComponent inputType="password" type="pw" onChangeValue={onChangeValue}  value={value} placeholder="password를 입력하세요"/>
+                    <InputComponent inputType="password" type="pwValid" onChangeValue={onChangeValue}  value={value} placeholder="password 재확인"/>
                     <InputComponent inputType="text" type="email" onChangeValue={onChangeValue}  value={value} placeholder="email를 입력하세요"/>
                 </form>
             </ContentsContainer>
