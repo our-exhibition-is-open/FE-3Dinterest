@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
+import { checkingSubmitValue } from "../../util/register/checkingValue";
 
 const MoveButton = keyframes`
     from {
@@ -27,15 +28,17 @@ export const notAvailableButton = styled.button`
     background:#ffffff59;
     backdrop-filter: blur(10px);
     border-radius: 0.4rem;
-    ${(props) => props.active && `
-     animation: ${MoveButton} 2s 1s infinite linear alternate;   
-    `}
 `
 
 export function SubmitButton({properCount}) {
-
+    const buttonAvailable = checkingSubmitValue(properCount);
     return (
         <>
+        {
+            buttonAvailable ?
+                <availableButton>Sign up</availableButton> :
+                <notAvailableButton>no Sign up</notAvailableButton>
+        }
         </>
     )
 }
