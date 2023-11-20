@@ -38,9 +38,9 @@ export function SubmitButton({properCount, buttonState}) {
         <>
         {
             buttonState ?
-                <NotAvailableButton>
+                <AvailableButton>
                     <Link to="/" style={{ color: "black",textDecoration: "none"}}>Sign up</Link>
-                </NotAvailableButton> :
+                </AvailableButton> :
                 <NotAvailableButton>no Sign up</NotAvailableButton>
         }
         </>
