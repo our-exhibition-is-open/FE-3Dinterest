@@ -23,3 +23,11 @@ export function checkingValue(value, type) {
     }
     return 0;
 }
+
+export function checkingSubmitValue(properCount)
+{
+    if(properCount["id"] == true && properCount["pw"] == true && properCount["pwValid"] == true && properCount["email"] == true) {
+        return true;
+    }
+    return false;
+}
