@@ -1,5 +1,8 @@
 import React, { useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import ReactDOM from 'react-dom/client'
 import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 
 import { InputComponent, notAvailableButton } from "../component/common/InputComponent";
@@ -38,15 +41,25 @@ export function RegisterPage() {
         
         if(checkingSubmitValue(properCount)) {
             buttonAvailable.current = true;
-            const rootElement = document.getElementById("bodyContainer");
+            const rootElement = document.getElementById("form");
             const buttonElement = (
                 <notAvailableButton formAction="">
-                    <Link to="/" style={{ color: "black",textDecoration: "none"}}>Sign up</Link>
+                    {/* <Link to="/" style={{ color: "black",textDecoration: "none"}}>Sign up</Link> */}
+                    Signup
                 </notAvailableButton>
             )
+            createPortal(buttonElement, rootElement);
         } else {
-            buttonAvailable.current = false;
+            const rootElement = document.getElementById("form");
+            const buttonElement = (
+                <notAvailableButton formAction="">
+                    {/* <Link to="/" style={{ color: "black",textDecoration: "none"}}>not Sign up</Link> */}
+                    notSignUp
+                </notAvailableButton>
+            )
+            createPortal(buttonElement, rootElement);
         }
+
     }
 
 
@@ -55,10 +68,8 @@ export function RegisterPage() {
         <BackgroundContainer>
             <MainBackground/>
         </BackgroundContainer>
-        <BodyContainer id="bodyContainer">
-            
-                <form> 
-                { buttonAvailable && <div>test</div>}
+        <BodyContainer>
+                <form id="form"> 
                 <ContentsContainer>
                     <InputComponent 
                         inputType="text"
