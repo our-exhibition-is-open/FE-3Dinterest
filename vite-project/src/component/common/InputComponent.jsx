@@ -1,6 +1,15 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { checkingValue } from "../../util/register/checkingValue";
+
+const MoveButton = keyframes`
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+`
 
 export const Button = styled.button`
     height: 2rem;
@@ -8,6 +17,9 @@ export const Button = styled.button`
     background:#ffffff59;
     backdrop-filter: blur(10px);
     border-radius: 0.4rem;
+    ${(props) => props.active && `
+     animation: ${MoveButton} 2s 1s infinite linear alternate;   
+    `}
 `
 
 
