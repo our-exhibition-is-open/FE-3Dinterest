@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { InputComponent } from "../component/common/InputComponent";
+import { InputComponent, Button } from "../component/common/InputComponent";
 import { checkingValue } from "../util/register/checkingValue";
 import { events } from "@react-three/fiber";
+import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
+import { useNavigate } from "react-router-dom";
 
-const Button = styled.button`
-    width: 100%;
-`
 
 const BodyContainer = styled.div`
     display: flex;
@@ -18,7 +17,7 @@ const ContentsContainer = styled.div`
     flex-direction: column;
     justify-content: center;
 
-    margin-top: 50%;
+    margin-top: 60%;
     width: 100%;
     height: 100%;
     gap: 1rem;
@@ -27,7 +26,7 @@ const ContentsContainer = styled.div`
 export function RegisterPage() {
     const [value, setValue] = useState({id: "", pw: "", pwValid: "", email: ""});
     const [properCount, setProperCount] = useState({id: false, pw: false, pwValid: false, email: false});
-
+    const navigate = useNavigate();
     function onChangeValue(value, properCount, type) {
         setValue(value);
         properCount[type] = checkingValue(value, type) ? true : false;
@@ -37,6 +36,7 @@ export function RegisterPage() {
         if(properCount["id"] == true && properCount["pw"] == true && properCount["pwValid"] == true && properCount["email"] == true)
         {
             alert("good");
+            navigate("/");
         }
         else
         {
@@ -45,6 +45,9 @@ export function RegisterPage() {
     }
     return (
         <>
+        <BackgroundContainer>
+            <MainBackground/>
+        </BackgroundContainer>
         <BodyContainer>
             
                 <form onSubmit={() => handlingSubmit(properCount)}> 
@@ -81,7 +84,7 @@ export function RegisterPage() {
                         properCount={properCount} 
                         placeholder="email"
                     />
-                    <Button formAction="">회원가입</Button>
+                    <Button formAction="">Sign up</Button>
                     </ContentsContainer>
                 </form>
         </BodyContainer>
