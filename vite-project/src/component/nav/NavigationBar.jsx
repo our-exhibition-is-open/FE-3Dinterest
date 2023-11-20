@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import { styled } from 'styled-components';
 
-import { Button, ButtonComponent } from "../common/ButtonComponent";
+import { Button, ButtonComponent } from "./ButtonComponent";
 import { ModalBackground, PostModal } from "../mainpage/modal/PostModal";
 import { Link } from "react-router-dom";
 
