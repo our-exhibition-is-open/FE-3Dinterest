@@ -19,7 +19,8 @@ export default function MainPage() {
     const modelCount = 26;
     return(
         <Container>
-            <BackGround
+            {/* <MainBackground>
+            </MainBackground> */}
             <NavigationBar />
             <WelcomeHeader userName={userName} modelCount={modelCount}/>
             <PostList />
