@@ -7,7 +7,7 @@ import { EffectComposer, N8AO } from '@react-three/postprocessing'
 import { easing } from 'maath'
 
 
-function BackGround(props) {
+export function MainBackground(props) {
     const [accent, click] = useReducer((state) => ++state % accents.length, 0)
     const connectors = useMemo(() => shuffle(accent), [accent])
     return (
