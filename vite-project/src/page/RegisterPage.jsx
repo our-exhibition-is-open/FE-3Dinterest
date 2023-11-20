@@ -29,7 +29,6 @@ const ContentsContainer = styled.div`
 export function RegisterPage() {
     const [value, setValue] = useState({id: "", pw: "", pwValid: "", email: ""});
     const [properCount, setProperCount] = useState({id: false, pw: false, pwValid: false, email: false});
-    const buttonAvailable = useRef(false);
 
 
     function onChangeValue(value, properCount, type) {
@@ -38,28 +37,6 @@ export function RegisterPage() {
         setProperCount(properCount);
 
         console.log(properCount);
-        
-        if(checkingSubmitValue(properCount)) {
-            buttonAvailable.current = true;
-            const rootElement = document.getElementById("form");
-            const buttonElement = (
-                <notAvailableButton formAction="">
-                    {/* <Link to="/" style={{ color: "black",textDecoration: "none"}}>Sign up</Link> */}
-                    Signup
-                </notAvailableButton>
-            )
-            createPortal(buttonElement, rootElement);
-        } else {
-            const rootElement = document.getElementById("form");
-            const buttonElement = (
-                <notAvailableButton formAction="">
-                    {/* <Link to="/" style={{ color: "black",textDecoration: "none"}}>not Sign up</Link> */}
-                    notSignUp
-                </notAvailableButton>
-            )
-            createPortal(buttonElement, rootElement);
-        }
-
     }
 
 
