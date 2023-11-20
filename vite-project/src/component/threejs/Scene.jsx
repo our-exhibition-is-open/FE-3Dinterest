@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 
 export function Scene(props) {
-  const gltf = useLoader(GLTFLoader, "src/resource/large_pile_of_cloth/scene.gltf");
+  const gltf = useLoader(GLTFLoader, "src/resource/gltf/scene.gltf");
   const cameraControlRef = useRef(CameraControls, null);
 
   return (
