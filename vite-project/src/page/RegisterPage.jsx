@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { InputComponent, Button } from "../component/common/InputComponent";
 import { checkingValue } from "../util/register/checkingValue";
@@ -26,20 +26,31 @@ const ContentsContainer = styled.div`
 export function RegisterPage() {
     const [value, setValue] = useState({id: "", pw: "", pwValid: "", email: ""});
     const [properCount, setProperCount] = useState({id: false, pw: false, pwValid: false, email: false});
+    const buttonAvailable = useRef(false);
+
     const navigate = useNavigate();
+
     function onChangeValue(value, properCount, type) {
         setValue(value);
         properCount[type] = checkingValue(value, type) ? true : false;
         setProperCount(properCount);
-    }
-    function handlingSubmit(properCount) {
-        if(properCount["id"] == true && properCount["pw"] == true && properCount["pwValid"] == true && properCount["email"] == true)
-        {
-            alert("good");
-            navigate("/");
+        if(properCount["id"] == true && properCount["pw"] == true && properCount["pwValid"] == true && properCount["email"] == true) {
+            buttonAvailable.current = true;
+        } else {
+            buttonAvailable.current = false;
         }
-        else
-        {
+        console.log(buttonAvailable);
+    }
+
+    function handlingSubmit() {
+        if(buttonAvailable) {
+            alert("good");
+            const registerButton = document.getElementById("bodyContainer");
+            registerButton.
+            console.log(buttonAvailable);
+            // navigate("/"); 
+        } else {
+            console.log(buttonAvailable);
             alert("no");
         }
     }
@@ -48,9 +59,10 @@ export function RegisterPage() {
         <BackgroundContainer>
             <MainBackground/>
         </BackgroundContainer>
-        <BodyContainer>
+        <BodyContainer id="bodyContainer">
             
-                <form onSubmit={() => handlingSubmit(properCount)}> 
+                <form onSubmit={handlingSubmit}> 
+                { buttonAvailable && <div>test</div>}
                 <ContentsContainer>
                     <InputComponent 
                         inputType="text"
@@ -84,7 +96,7 @@ export function RegisterPage() {
                         properCount={properCount} 
                         placeholder="email"
                     />
-                    <Button formAction="">Sign up</Button>
+                    <Button id="registerButton" formAction="">Sign up</Button>
                     </ContentsContainer>
                 </form>
         </BodyContainer>
