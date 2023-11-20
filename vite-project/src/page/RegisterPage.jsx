@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { InputComponent } from "../component/common/InputComponent";
-import { checkingValue} from "../util/register/checkingValue";
+import { checkingSubmitValue, checkingValue} from "../util/register/checkingValue";
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
 
@@ -30,13 +30,14 @@ const ContentsContainer = styled.div`
 export function RegisterPage() {
     const [value, setValue] = useState({id: "", pw: "", pwValid: "", email: ""});
     const [properCount, setProperCount] = useState({id: false, pw: false, pwValid: false, email: false});
+    const [buttonAvail, setButtonAvail] = useState(false);
 
 
     function onChangeValue(value, properCount, type) {
         setValue(value);
         properCount[type] = checkingValue(value, type) ? true : false;
         setProperCount(properCount);
-
+        setButtonAvail(checkingSubmitValue(properCount));
         console.log(properCount);
     }
 
@@ -81,7 +82,7 @@ export function RegisterPage() {
                         properCount={properCount} 
                         placeholder="email"
                     />
-                    <SubmitButton/>
+                    <SubmitButton properCount={properCount} buttonState={buttonAvail}/>
                     </ContentsContainer>
                 </form>
         </BodyContainer>
