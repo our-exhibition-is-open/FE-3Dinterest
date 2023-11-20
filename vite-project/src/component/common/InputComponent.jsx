@@ -2,38 +2,6 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { checkingSubmitValue, checkingValue } from "../../util/register/checkingValue";
 
-const MoveButton = keyframes`
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-`
-
-export const availableButton = styled.button`
-    height: 2rem;
-    width: 100%;
-    background:#ffffff59;
-    backdrop-filter: blur(10px);
-    border-radius: 0.4rem;
-    ${(props) => props.active && `
-     animation: ${MoveButton} 2s 1s infinite linear alternate;   
-    `}
-`
-
-export const notAvailableButton = styled.button`
-    height: 2rem;
-    width: 100%;
-    background:#ffffff59;
-    backdrop-filter: blur(10px);
-    border-radius: 0.4rem;
-    ${(props) => props.active && `
-     animation: ${MoveButton} 2s 1s infinite linear alternate;   
-    `}
-`
-
-
 const Message = styled.div`
     color: #000000;
     font-family: "SF-Pro-Rounded-Regular";
@@ -72,7 +40,6 @@ export function InputComponent({inputType, type, onChangeValue, value, properCou
         value[type] = e.target.value;
         onChangeValue(value, properCount, type);
         setMessageState(properCount[type]);
-        checkingSubmitValue(properCount)
     }
 
     return (
