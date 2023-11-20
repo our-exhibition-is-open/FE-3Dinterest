@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-import { NavigationBar } from '../component/common/NavigationBar.jsx';
+import { NavigationBar } from '../component/nav/NavigationBar.jsx';
 import { PostList } from '../component/mainpage/PostList.jsx'
 import {WelcomeHeader} from '../component/mainpage/WelcomeComponent';
 import {MainBackground} from '../component/threejs/MainBackground.jsx'
