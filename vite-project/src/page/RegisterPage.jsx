@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import { InputComponent, Button } from "../component/common/InputComponent";
-import { checkingValue } from "../util/register/checkingValue";
-import { events } from "@react-three/fiber";
+import { InputComponent, notAvailableButton } from "../component/common/InputComponent";
+import { checkingValue, checkingSubmitValue } from "../util/register/checkingValue";
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
 import { useNavigate } from "react-router-dom";
 
@@ -34,19 +33,22 @@ export function RegisterPage() {
         setValue(value);
         properCount[type] = checkingValue(value, type) ? true : false;
         setProperCount(properCount);
-        if(properCount["id"] == true && properCount["pw"] == true && properCount["pwValid"] == true && properCount["email"] == true) {
+
+        if(checkingSubmitValue(properCount)) {
             buttonAvailable.current = true;
+            const rootElement = document.getElementById("bodyContainer");
+            const buttonElement = (
+                <notAvailableButton formAction="">Sign up</notAvailableButton>
+            )
         } else {
             buttonAvailable.current = false;
         }
-        console.log(buttonAvailable);
     }
 
     function handlingSubmit() {
         if(buttonAvailable) {
             alert("good");
-            const registerButton = document.getElementById("bodyContainer");
-            registerButton.
+            
             console.log(buttonAvailable);
             // navigate("/"); 
         } else {
@@ -96,7 +98,7 @@ export function RegisterPage() {
                         properCount={properCount} 
                         placeholder="email"
                     />
-                    <Button id="registerButton" formAction="">Sign up</Button>
+                    {/* <Button id="registerButton" formAction="">Sign up</Button> */}
                     </ContentsContainer>
                 </form>
         </BodyContainer>
