@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { checkingValue } from "../../util/register/checkingValue";
 
+export const Button = styled.button`
+    height: 2rem;
+    width: 100%;
+    background:#ffffff59;
+    backdrop-filter: blur(10px);
+    border-radius: 0.4rem;
+`
+
 
 const Message = styled.div`
     color: #000000;
@@ -23,6 +31,9 @@ const Input = styled.input`
     width: 100%;
     height: 100%;
     border-radius: 0.4rem;
+    background:#ffffff59;
+    
+    backdrop-filter: blur(10px);
 `
 
 const InputContainer = styled.div`
