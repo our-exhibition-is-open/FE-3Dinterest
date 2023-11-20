@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
-import { InputComponent, notAvailableButton } from "../component/common/InputComponent";
-import { checkingValue, checkingSubmitValue } from "../util/register/checkingValue";
+import { InputComponent } from "../component/common/InputComponent";
+import { checkingValue} from "../util/register/checkingValue";
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
 
