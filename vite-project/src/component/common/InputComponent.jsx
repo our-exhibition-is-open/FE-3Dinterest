@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { checkingValue } from "../../util/register/checkingValue";
+import { checkingSubmitValue, checkingValue } from "../../util/register/checkingValue";
 
 const MoveButton = keyframes`
     from {
@@ -72,6 +72,7 @@ export function InputComponent({inputType, type, onChangeValue, value, properCou
         value[type] = e.target.value;
         onChangeValue(value, properCount, type);
         setMessageState(properCount[type]);
+        checkingSubmitValue(properCount)
     }
 
     return (
