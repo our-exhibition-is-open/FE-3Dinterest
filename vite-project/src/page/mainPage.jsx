@@ -3,9 +3,8 @@ import { styled } from 'styled-components';
 
 import { NavigationBar } from '../component/common/NavigationBar.jsx';
 import { PostList } from '../component/mainpage/PostList.jsx'
-import { PostCardMain } from '../component/mainpage/PostCardMain.jsx';
-import { PostModel, datas } from '../model/PostModel.js';
 import {WelcomeHeader} from '../component/mainpage/WelcomeComponent';
+import {MainBackground} from '../component/threejs/MainBackground.jsx'
 
 const Container = styled.div`
     display: flex;
@@ -20,6 +19,7 @@ export default function MainPage() {
     const modelCount = 26;
     return(
         <Container>
+            <BackGround
             <NavigationBar />
             <WelcomeHeader userName={userName} modelCount={modelCount}/>
             <PostList />
