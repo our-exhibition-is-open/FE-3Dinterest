@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { InputComponent, notAvailableButton } from "../component/common/InputComponent";
 import { checkingValue, checkingSubmitValue } from "../util/register/checkingValue";
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
+import { SubmitButton } from "../component/common/SubmitButton";
 
 
 const BodyContainer = styled.div`
@@ -80,7 +81,7 @@ export function RegisterPage() {
                         properCount={properCount} 
                         placeholder="email"
                     />
-                    {/* <Button id="registerButton" formAction="">Sign up</Button> */}
+                    <SubmitButton/>
                     </ContentsContainer>
                 </form>
         </BodyContainer>
