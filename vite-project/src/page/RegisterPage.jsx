@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import { InputComponent, notAvailableButton } from "../component/common/InputComponent";
 import { checkingValue, checkingSubmitValue } from "../util/register/checkingValue";
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
-import { useNavigate } from "react-router-dom";
 
 
 const BodyContainer = styled.div`
@@ -27,35 +28,28 @@ export function RegisterPage() {
     const [properCount, setProperCount] = useState({id: false, pw: false, pwValid: false, email: false});
     const buttonAvailable = useRef(false);
 
-    const navigate = useNavigate();
 
     function onChangeValue(value, properCount, type) {
         setValue(value);
         properCount[type] = checkingValue(value, type) ? true : false;
         setProperCount(properCount);
 
+        console.log(properCount);
+        
         if(checkingSubmitValue(properCount)) {
             buttonAvailable.current = true;
             const rootElement = document.getElementById("bodyContainer");
             const buttonElement = (
-                <notAvailableButton formAction="">Sign up</notAvailableButton>
+                <notAvailableButton formAction="">
+                    <Link to="/" style={{ color: "black",textDecoration: "none"}}>Sign up</Link>
+                </notAvailableButton>
             )
         } else {
             buttonAvailable.current = false;
         }
     }
 
-    function handlingSubmit() {
-        if(buttonAvailable) {
-            alert("good");
-            
-            console.log(buttonAvailable);
-            // navigate("/"); 
-        } else {
-            console.log(buttonAvailable);
-            alert("no");
-        }
-    }
+
     return (
         <>
         <BackgroundContainer>
@@ -63,7 +57,7 @@ export function RegisterPage() {
         </BackgroundContainer>
         <BodyContainer id="bodyContainer">
             
-                <form onSubmit={handlingSubmit}> 
+                <form> 
                 { buttonAvailable && <div>test</div>}
                 <ContentsContainer>
                     <InputComponent 
