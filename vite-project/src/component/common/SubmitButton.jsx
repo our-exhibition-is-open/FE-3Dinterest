@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { checkingSubmitValue } from "../../util/register/checkingValue";
 
@@ -11,7 +12,16 @@ const MoveButton = keyframes`
     }
 `
 
-export const availableButton = styled.button`
+export const AvailableButton = styled.button`
+    height: 2rem;
+    width: 100%;
+    background:#ffffff59;
+    backdrop-filter: blur(10px);
+    border-radius: 0.4rem;
+`
+
+export const NotAvailableButton = styled.button`
+    z-index: 10;
     height: 2rem;
     width: 100%;
     background:#ffffff59;
@@ -22,23 +32,17 @@ export const availableButton = styled.button`
     `}
 `
 
-export const notAvailableButton = styled.button`
-    height: 2rem;
-    width: 100%;
-    background:#ffffff59;
-    backdrop-filter: blur(10px);
-    border-radius: 0.4rem;
-`
-
-export function SubmitButton({properCount}) {
-    const buttonAvailable = checkingSubmitValue(properCount);
+export function SubmitButton({properCount, buttonState}) {
+    console.log(buttonState);
     return (
         <>
         {
-            buttonAvailable ?
-                <availableButton>Sign up</availableButton> :
-                <notAvailableButton>no Sign up</notAvailableButton>
+            buttonState ?
+                <NotAvailableButton>
+                    <Link to="/" style={{ color: "black",textDecoration: "none"}}>Sign up</Link>
+                </NotAvailableButton> :
+                <NotAvailableButton>no Sign up</NotAvailableButton>
         }
         </>
-    )
+    );
 }
