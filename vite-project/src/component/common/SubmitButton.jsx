@@ -1,16 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
-import { checkingSubmitValue } from "../../util/register/checkingValue";
-
-const MoveButton = keyframes`
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-`
 
 export const AvailableButton = styled.button`
     height: 2rem;
@@ -21,19 +11,28 @@ export const AvailableButton = styled.button`
 `
 
 export const NotAvailableButton = styled.button`
+    
     z-index: 10;
     height: 2rem;
     width: 100%;
     background:#ffffff59;
     backdrop-filter: blur(10px);
     border-radius: 0.4rem;
-    ${(props) => props.active && `
-     animation: ${MoveButton} 2s 1s infinite linear alternate;   
-    `}
+    transform: translateX(${(props) => props.position}rem);
+    transition: transform 0.2s ease;
 `
 
-export function SubmitButton({properCount, buttonState}) {
-    console.log(buttonState);
+export function SubmitButton({buttonState}) {
+    const [buttonPosition, setButtonPosition] = useState(0);
+
+    function handleHover() {
+        console.log(buttonPosition);
+        if(buttonPosition == 0)
+            setButtonPosition(1);
+        else 
+            setButtonPosition(-1 * buttonPosition);
+    }
+
     return (
         <>
         {
@@ -41,7 +40,7 @@ export function SubmitButton({properCount, buttonState}) {
                 <AvailableButton>
                     <Link to="/" style={{ color: "black",textDecoration: "none"}}>Sign up</Link>
                 </AvailableButton> :
-                <NotAvailableButton>no Sign up</NotAvailableButton>
+                <NotAvailableButton onMouseEnter={handleHover} position={20 * buttonPosition}>Can't Sign up</NotAvailableButton>
         }
         </>
     );
