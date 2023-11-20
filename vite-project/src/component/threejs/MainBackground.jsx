@@ -6,6 +6,18 @@ import { CuboidCollider, BallCollider, Physics, RigidBody } from '@react-three/r
 import { EffectComposer, N8AO } from '@react-three/postprocessing'
 import { easing } from 'maath'
 
+const accents = ['#4060ff', '#20ffa0', '#ff4060', '#ffcc00']
+const shuffle = (accent = 0) => [
+  { color: '#444', roughness: 0.1 },
+  { color: '#444', roughness: 0.75 },
+  { color: '#444', roughness: 0.75 },
+  { color: 'white', roughness: 0.1 },
+  { color: 'white', roughness: 0.75 },
+  { color: 'white', roughness: 0.1 },
+  { color: accents[accent], roughness: 0.1, accent: true },
+  { color: accents[accent], roughness: 0.75, accent: true },
+  { color: accents[accent], roughness: 0.1, accent: true }
+]
 
 export function MainBackground(props) {
     const [accent, click] = useReducer((state) => ++state % accents.length, 0)
