@@ -59,19 +59,15 @@ export function PostCardMain(props) {
     const post = props.post;
     const [isClicked, setClicked] = useState(false);
 
-    if(isClicked)
-    {
+    if(isClicked) {
         document.body.style.overflow = 'hidden';
-    }
-    else
-    {
+    } else {
         document.body.style.overflow = 'auto';
     }
 
     function handleBackgroundClick() {
         setClicked(false);
         console.log("im clicked 2222");
-
     }
     function handlePostClick() {
         setClicked(true);
