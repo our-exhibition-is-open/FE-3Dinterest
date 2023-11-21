@@ -41,9 +41,11 @@ const WelcomeComponentH3 = styled(WelcomeComponentH1)`
 export function WelcomeHeader(props){
     return (
         <>
+        <Container>
             <WelcomeComponentH1>{props.userName}의</WelcomeComponentH1>
             <WelcomeComponentH2>3Dinterest</WelcomeComponentH2>
             <WelcomeComponentH3>{props.modelCount}개 저장됨</WelcomeComponentH3>
+        </Container>
         </>
     )
 }

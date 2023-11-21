@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
+
 import { InputComponent } from "../component/common/InputComponent";
+import { checkingSubmitValue, checkingValue} from "../util/register/checkingValue";
+import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
+import { SubmitButton } from "../component/common/SubmitButton";
+import { useNavigate } from "react-router-dom";
 
 
 const BodyContainer = styled.div`
@@ -11,65 +16,81 @@ const BodyContainer = styled.div`
 const ContentsContainer = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 10%;
-    width: 20rem;
-    height: 100%;
-    gap: 3rem;
-`
+    justify-content: center;
 
-const PasswordContainer = styled.div`
-    gap: 1rem;
-    display: flex;
-    flex-direction: column;
+    margin-top: 60%;
+    width: 100%;
+    height: 100%;
+    gap: 0.8rem;
 `
 
 export function RegisterPage() {
-    const [submitStatus, setsubmitStatus] = useState(false);
-    const [isIdProper, setIsIdProper] = useState(false);
-
     const [value, setValue] = useState({id: "", pw: "", pwValid: "", email: ""});
-    const [properCount, setProperCount] = useState(0);
-    
+    const [properCount, setProperCount] = useState({id: false, pw: false, pwValid: false, email: false});
+    const [buttonState, setButtonState] = useState(false);
 
-    function onChangeValue(value) {
+    const navigate = useNavigate();
+
+
+    function onChangeValue(value, properCount, type) {
         setValue(value);
+        properCount[type] = checkingValue(value, type) ? true : false;
+        setProperCount(properCount);
+        setButtonState(checkingSubmitValue(properCount));
+        console.log(properCount);
     }
-    function onChangeProper() {
 
+    function handlingSubmit() {
+        navigate('/');
     }
+
 
     return (
         <>
+        <BackgroundContainer>
+            <MainBackground/>
+        </BackgroundContainer>
         <BodyContainer>
-            <ContentsContainer>
-                <form> 
-                    <InputComponent inputType="text" type="id" onChangeValue={onChangeValue}  value={value} placeholder="id를 입력하세요"/>
-                    <InputComponent inputType="password" type="pw" onChangeValue={onChangeValue}  value={value} placeholder="password를 입력하세요"/>
-                    <InputComponent inputType="password" type="pwValid" onChangeValue={onChangeValue}  value={value} placeholder="password 재확인"/>
-                    <InputComponent inputType="text" type="email" onChangeValue={onChangeValue}  value={value} placeholder="email를 입력하세요"/>
+                <form onSubmit={handlingSubmit}> 
+                <ContentsContainer>
+                    <InputComponent 
+                        inputType="text"
+                        type="id"
+                        onChangeValue={onChangeValue}
+                        value={value} 
+                        properCount={properCount} 
+                        placeholder="id"
+                    />
+                    <InputComponent 
+                        inputType="password" 
+                        type="pw" 
+                        onChangeValue={onChangeValue}  
+                        value={value} 
+                        properCount={properCount} 
+                        placeholder="password"
+                    />
+                    <InputComponent 
+                        inputType="password" 
+                        type="pwValid" 
+                        onChangeValue={onChangeValue}
+                        value={value} 
+                        properCount={properCount} 
+                        placeholder="password confirm"
+                    />
+                    <InputComponent 
+                        inputType="text" 
+                        type="email" 
+                        onChangeValue={onChangeValue}
+                        value={value} 
+                        properCount={properCount} 
+                        placeholder="email"
+                    />
+                    <SubmitButton buttonState={buttonState}/>
+                    </ContentsContainer>
                 </form>
-            </ContentsContainer>
         </BodyContainer>
         </>
     )
 }
 
 
-
-const handlingOnChangeValue2 = (e, checkingExp) => {
-    const currentValue = e.target.value;
-    setValue(currentValue);
-
-
-
-    if(!checkingExp.test(currentValue))
-    {
-        setMessage("다시 입력하세요");
-        setIsProper(false);
-    }
-    else
-    {
-        setMessage("굿");
-        setIsProper(true);
-    }
-}
