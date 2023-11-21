@@ -21,15 +21,19 @@ const MessageContainer = styled.div`
 const Input = styled.input`
     width: 100%;
     height: 100%;
+    border: none;
     border-radius: 0.4rem;
-    background:#ffffff59;
+    background: rgba(191, 191, 191, 0.329);
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: brightness(300%) blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
     
-    backdrop-filter: blur(10px);
+    box-shadow: 0 0 1px #ffffff, 0 0 3px #ffffff;
 `
 
 const InputContainer = styled.div`
-    width: 268px;   
-    height: 38px;
+    width: 280px;   
+    height: 42px;
     justify-content: center;
     position: relative;
 `
