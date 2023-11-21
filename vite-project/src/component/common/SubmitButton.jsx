@@ -10,8 +10,11 @@ export const AvailableButton = styled.button`
     border-radius: 0.4rem;
 `
 
+const Image = styled.img`
+    object-fit: cover;
+`
+
 export const NotAvailableButton = styled.button`
-    
     z-index: 10;
     height: 2rem;
     width: 100%;
@@ -24,6 +27,7 @@ export const NotAvailableButton = styled.button`
 
 export function SubmitButton({buttonState}) {
     const [buttonPosition, setButtonPosition] = useState(0);
+    const [buttonHovering, setButtonHovering] = useState(false)
 
     function handleHover() {
         console.log(buttonPosition);
@@ -32,14 +36,15 @@ export function SubmitButton({buttonState}) {
         else 
             setButtonPosition(-1 * buttonPosition);
     }
-
     return (
         <>
         {
-            buttonState ?
-                <AvailableButton>
-                    <Link to="/" style={{ color: "black",textDecoration: "none"}}>Sign up</Link>
-                </AvailableButton> :
+            buttonState ? (
+                <>
+                {/* <Image src="/src/resource/image/nyan-cat.gif"/> */}
+                <AvailableButton>Sign up</AvailableButton>
+                </>
+             ) :
                 <NotAvailableButton onMouseEnter={handleHover} position={20 * buttonPosition}>Can't Sign up</NotAvailableButton>
         }
         </>
