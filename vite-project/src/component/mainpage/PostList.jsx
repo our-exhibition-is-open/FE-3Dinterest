@@ -7,14 +7,14 @@ import { getPostListApi } from "../../api/getPostListApi"
 import { ModalBackground, PostModal } from "./modal/PostModal";
 
 const Container = styled.div`
-    z-index: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    
+    z-index: 3;
     margin-top: 0%;
-    gap: 1rem;
-    width: 62rem;
+    gap: 1.1rem;
+    width: 65rem;
 `
 
 export function PostList(props) {
