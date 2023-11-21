@@ -85,7 +85,7 @@ export function RegisterPage() {
                         properCount={properCount} 
                         placeholder="email"
                     />
-                    <SubmitButton buttonState={true}/>
+                    <SubmitButton buttonState={buttonState}/>
                     </ContentsContainer>
                 </form>
         </BodyContainer>
