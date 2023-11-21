@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 import { NavigationBar } from '../component/nav/NavigationBar.jsx';
 import { PostList } from '../component/mainpage/PostList.jsx'
 import {WelcomeHeader} from '../component/mainpage/WelcomeComponent';
-import {MainBackground} from '../component/threejs/MainBackground.jsx'
+
 
 const Container = styled.div`
     display: flex;
@@ -19,8 +19,6 @@ export default function MainPage() {
     const modelCount = 26;
     return(
         <Container>
-            {/* <MainBackground>
-            </MainBackground> */}
             <NavigationBar />
             <WelcomeHeader userName={userName} modelCount={modelCount}/>
             <PostList />
