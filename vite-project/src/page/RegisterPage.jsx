@@ -1,11 +1,12 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 import { InputComponent } from "../component/common/InputComponent";
 import { checkingSubmitValue, checkingValue} from "../util/register/checkingValue";
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
-import { useNavigate } from "react-router-dom";
+import { WelcomeComponentH1 } from "../component/mainpage/WelcomeComponent";
 
 
 const BodyContainer = styled.div`

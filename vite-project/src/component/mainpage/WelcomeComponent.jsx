@@ -7,7 +7,7 @@ const Container = styled.div`
     align-items: center;
 `
 
-const WelcomeComponentH1 = styled.h1`
+export const WelcomeComponentH1 = styled.h1`
     margin: 0 auto;
     margin-top: 4.56rem;
 
