@@ -1,28 +1,59 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 import { InputComponent } from "../component/common/InputComponent";
 import { checkingSubmitValue, checkingValue} from "../util/register/checkingValue";
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
-import { WelcomeComponentH1 } from "../component/mainpage/WelcomeComponent";
+import { LogoContainer } from "../component/common/LogoComponent";
+
+const CommonText = styled.div`
+    z-index: 1;
+    text-align: center;
+
+    margin-top: 10%;
+
+    width: 29rem;
+    color: #000000;
+    font-family: "San Francisco";
+    font-size: 4rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.05469rem;
+
+    text-shadow: 0 0 7px #000000, 0 0 10px #000000, 0 0 21px #000000, 0 0 42px #000000,
+    0 0 82px #000000, 0 0 92px #000000, 0 0 102#000000fa, 0 0 151#0000004a;
+
+    /* backdrop-filter: brightness(300%) blur(8.5px); */
+
+    
+`
+
+
+const GoToSignIn = styled(CommonText)`
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1%;
+`
 
 
 const BodyContainer = styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 `
 
 const ContentsContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
 
-    margin-top: 60%;
+    margin-top: 10%;
     width: 100%;
     height: 100%;
     gap: 0.8rem;
+    
 `
 
 export function RegisterPage() {
@@ -45,14 +76,22 @@ export function RegisterPage() {
         navigate('/');
     }
 
+    function handleClick () {
+        navigate('/');
+    }
 
     return (
         <>
-        <BackgroundContainer>
-            <MainBackground/>
-        </BackgroundContainer>
         <BodyContainer>
-                <form onSubmit={handlingSubmit}> 
+            <BackgroundContainer>
+                <MainBackground/>
+            </BackgroundContainer>
+            
+            <LogoContainer onClick={handleClick}>
+            3Dinterest
+            </LogoContainer>
+            
+            <form onSubmit={handlingSubmit}> 
                 <ContentsContainer>
                     <InputComponent 
                         inputType="text"
@@ -89,6 +128,7 @@ export function RegisterPage() {
                     <SubmitButton buttonState={buttonState}/>
                     </ContentsContainer>
                 </form>
+                <GoToSignIn><Link to={'/login'} style={{ color: "black",textDecoration: "none"}}>Have an account?</Link></GoToSignIn>
         </BodyContainer>
         </>
     )
