@@ -1,14 +1,11 @@
 import React, { useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import ReactDOM from 'react-dom/client'
-import { Link } from "react-router-dom";
-
 import styled from "styled-components";
 
 import { InputComponent } from "../component/common/InputComponent";
 import { checkingSubmitValue, checkingValue} from "../util/register/checkingValue";
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
+import { useNavigate } from "react-router-dom";
 
 
 const BodyContainer = styled.div`
@@ -24,21 +21,27 @@ const ContentsContainer = styled.div`
     margin-top: 60%;
     width: 100%;
     height: 100%;
-    gap: 1rem;
+    gap: 0.8rem;
 `
 
 export function RegisterPage() {
     const [value, setValue] = useState({id: "", pw: "", pwValid: "", email: ""});
     const [properCount, setProperCount] = useState({id: false, pw: false, pwValid: false, email: false});
-    const [buttonAvail, setButtonAvail] = useState(false);
+    const [buttonState, setButtonState] = useState(false);
+
+    const navigate = useNavigate();
 
 
     function onChangeValue(value, properCount, type) {
         setValue(value);
         properCount[type] = checkingValue(value, type) ? true : false;
         setProperCount(properCount);
-        setButtonAvail(checkingSubmitValue(properCount));
+        setButtonState(checkingSubmitValue(properCount));
         console.log(properCount);
+    }
+
+    function handlingSubmit() {
+        navigate('/');
     }
 
 
@@ -48,7 +51,7 @@ export function RegisterPage() {
             <MainBackground/>
         </BackgroundContainer>
         <BodyContainer>
-                <form id="form"> 
+                <form onSubmit={handlingSubmit}> 
                 <ContentsContainer>
                     <InputComponent 
                         inputType="text"
@@ -82,7 +85,7 @@ export function RegisterPage() {
                         properCount={properCount} 
                         placeholder="email"
                     />
-                    <SubmitButton properCount={properCount} buttonState={buttonAvail}/>
+                    <SubmitButton buttonState={true}/>
                     </ContentsContainer>
                 </form>
         </BodyContainer>
