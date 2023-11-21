@@ -43,7 +43,7 @@ export const NotAvailableButton = styled.button`
     0 0 5px #ff2020, 0 0 7px #ff3232;
 `
 
-export function SubmitButton({buttonState}) {
+export function SubmitButton({buttonState, buttonMessage}) {
     const [buttonPosition, setButtonPosition] = useState(0);
     const [buttonHovering, setButtonHovering] = useState(false)
 
@@ -60,10 +60,10 @@ export function SubmitButton({buttonState}) {
             buttonState ? (
                 <>
                 {/* <Image src="/src/resource/image/nyan-cat.gif"/> */}
-                <AvailableButton>Sign up</AvailableButton>
+                <AvailableButton>{buttonMessage}</AvailableButton>
                 </>
              ) :
-                <NotAvailableButton onMouseEnter={handleHover} position={20 * buttonPosition}>Can't Sign up</NotAvailableButton>
+                <NotAvailableButton onMouseEnter={handleHover} position={20 * buttonPosition}>Can't {buttonMessage}</NotAvailableButton>
         }
         </>
     );
