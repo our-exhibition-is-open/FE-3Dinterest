@@ -56,7 +56,7 @@ const ContentsContainer = styled.div`
     
 `
 
-export function LoginPage() {
+export function LoginPage({setLoginSuccess}) {
     const [value, setValue] = useState({id: "", pw: "", pwValid: "", email: ""});
     const [properCount, setProperCount] = useState({id: false, pw: false, pwValid: false, email: false});
     const [buttonState, setButtonState] = useState(false);
@@ -73,6 +73,9 @@ export function LoginPage() {
     }
 
     function handlingSubmit() {
+        // if() {//로그인 성공하면 부모 컴포넌트 값 변경하기 -> 인트로페이지 조정하기 위해
+
+        // }
 
     }
 
