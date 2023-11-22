@@ -12,11 +12,6 @@ export const AvailableButton = styled.button`
     border: 0;
     box-shadow: 0 0 0px #ff0000, 0 0 0px #ff2525c7, 0 0 0px #ff2222, 0 0 0px #ff1919,
     0 0 5px #ff2020, 0 0 7px #ff3232;
-    /* background-color: transparent; */
-`
-
-const Image = styled.img`
-    object-fit: cover;
 `
 
 export const NotAvailableButton = styled.button`
@@ -27,7 +22,6 @@ export const NotAvailableButton = styled.button`
     backdrop-filter: blur(50px);
     border-radius: 0.4rem;
     border: 0;
-    /* background-color: transparent; */
 
     font-family: "San Francisco";
     font-style: normal;
