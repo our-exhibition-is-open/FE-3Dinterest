@@ -76,7 +76,7 @@ export function RegisterPage() {
         navigate('/');
     }
 
-    function handleClick () {
+    function handleClickToMain () {
         navigate('/');
     }
 
@@ -87,7 +87,7 @@ export function RegisterPage() {
                 <MainBackground/>
             </BackgroundContainer>
             
-            <LogoContainer onClick={handleClick}>
+            <LogoContainer onClick={handleClickToMain}>
             3Dinterest
             </LogoContainer>
             
@@ -128,7 +128,7 @@ export function RegisterPage() {
                     <SubmitButton buttonState={buttonState}/>
                     </ContentsContainer>
                 </form>
-                <GoToSignIn><Link to={'/login'} style={{ color: "black",textDecoration: "none"}}>Have an account?</Link></GoToSignIn>
+                <GoToSignIn><Link to={'/login'} style={{ color: "black"}}>Have an account?</Link></GoToSignIn>
         </BodyContainer>
         </>
     )
