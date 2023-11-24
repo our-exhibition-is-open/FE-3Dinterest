@@ -27,8 +27,17 @@ const Input = styled.input`
     /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
     backdrop-filter: brightness(300%) blur(8.5px);
     -webkit-backdrop-filter: blur(8.5px);
+
+    padding-left: 3%;
     
     box-shadow: 0 0 1px #ffffff, 0 0 3px #ffffff;
+    
+    &:focus {
+        outline: 0;
+    }
+    ::placeholder-shown {
+        margin-left: 10%;
+    }
 `
 
 const InputContainer = styled.div`
