@@ -73,11 +73,11 @@ export function RegisterPage() {
     }
 
     function handlingSubmit() {
-        navigate('/');
+        navigate('/login');
     }
 
     function handleClickToMain () {
-        navigate('/');
+        navigate('/register');
     }
 
     return (
@@ -125,7 +125,7 @@ export function RegisterPage() {
                         properCount={properCount} 
                         placeholder="email"
                     />
-                    <SubmitButton buttonState={buttonState}/>
+                    <SubmitButton buttonState={buttonState} buttonMessage={"Sign up"}/>
                     </ContentsContainer>
                 </form>
                 <GoToSignIn><Link to={'/login'} style={{ color: "black"}}>Have an account?</Link></GoToSignIn>
