@@ -68,6 +68,8 @@ export function LoginPage({setLoginSuccess}) {
         setValue(value);
         properCount[type] = checkingValue(value, type) ? true : false;
         setProperCount(properCount);
+        properCount["pwValid"] = true;
+        properCount["email"] = true;
         setButtonState(checkingSubmitValue(properCount));
         console.log(properCount);
     }
@@ -79,8 +81,8 @@ export function LoginPage({setLoginSuccess}) {
 
     }
 
-    function handleClickToMain () {
-        navigate('/');
+    function handleClickLogo () {
+        navigate('/login');
     }
 
     return (
@@ -90,7 +92,7 @@ export function LoginPage({setLoginSuccess}) {
                 <MainBackground/>
             </BackgroundContainer>
             
-            <LogoContainer onClick={handleClickToMain}>
+            <LogoContainer onClick={handleClickLogo}>
             3Dinterest
             </LogoContainer>
             
