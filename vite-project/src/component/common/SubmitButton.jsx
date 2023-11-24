@@ -3,22 +3,34 @@ import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 
 export const AvailableButton = styled.button`
+    cursor: pointer;
     height: 2rem;
     width: 100%;
-    background:#ff0000;
+    background:#2fff00;
     backdrop-filter: blur(20px);
     border-radius: 0.4rem;
 
+    color: white;
+    font-family: "San Francisco";
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
     border: 0;
-    box-shadow: 0 0 0px #ff0000, 0 0 0px #ff2525c7, 0 0 0px #ff2222, 0 0 0px #ff1919,
-    0 0 5px #ff2020, 0 0 7px #ff3232;
+    box-shadow: 0 0 0px #2fff00, 0 0 0px #2fff00, 0 0 0px #2fff00, 0 0 0px #2fff00,
+    0 0 5px #2fff00, 0 0 7px #2fff00;
+
+    transform: translateX(0);
+    transition: transform 0.2s ease-out;
+    
 `
 
-export const NotAvailableButton = styled.button`
+export const Button = styled.button`
     z-index: 10;
     height: 2rem;
     width: 100%;
-    background:#ff0000e6;
+
+    background:${(props) => props.buttoncolor};
     backdrop-filter: blur(50px);
     border-radius: 0.4rem;
     border: 0;
@@ -30,35 +42,39 @@ export const NotAvailableButton = styled.button`
     letter-spacing: 0.05469rem;
     color: #ffffff;
 
-    transform: translateX(${(props) => props.position}rem);
-    transition: transform 0.2s ease;
-
     box-shadow: 0 0 0px #ff0000, 0 0 0px #ff2525c7, 0 0 0px #ff2222, 0 0 0px #ff1919,
-    0 0 5px #ff2020, 0 0 7px #ff3232;
+    0 0 5px ${(props) => props.buttoncolor},
+    0 0 7px ${(props) => props.buttoncolor};
+
+    transform: translateX(${props => props.position}rem);
+    transition: transform 0.2s ease;
 `
 
 export function SubmitButton({buttonState, buttonMessage}) {
     const [buttonPosition, setButtonPosition] = useState(0);
-    const [buttonHovering, setButtonHovering] = useState(false)
-
+    
     function handleHover() {
         console.log(buttonPosition);
-        if(buttonPosition == 0)
-            setButtonPosition(1);
-        else 
-            setButtonPosition(-1 * buttonPosition);
+        if(!buttonState)
+        {
+            if(buttonPosition == 0)
+                setButtonPosition(1);
+            else 
+                setButtonPosition(-1 * buttonPosition);
+        }
     }
     return (
         <>
-        {
-            buttonState ? (
-                <>
-                {/* <Image src="/src/resource/image/nyan-cat.gif"/> */}
-                <AvailableButton>{buttonMessage}</AvailableButton>
-                </>
-             ) :
-                <NotAvailableButton onMouseEnter={handleHover} position={20 * buttonPosition}>Can't {buttonMessage}</NotAvailableButton>
-        }
+        <Button 
+        onMouseEnter={handleHover} 
+        position={buttonState? 0 : 20 * buttonPosition} 
+        buttoncolor={buttonState ? "#2fff00" : "#ff0000"}
+        >
+                    { buttonState ? 
+                        buttonMessage :
+                        "Can't " + buttonMessage
+                    }
+        </Button>
         </>
     );
 }
