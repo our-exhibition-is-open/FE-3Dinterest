@@ -18,7 +18,3 @@
 * styled-component
 * r3f, ThreeJS
 * framework react
-
-## 페이지
-<img src="./vite-project/src/resource/image/login-page.png">
-
