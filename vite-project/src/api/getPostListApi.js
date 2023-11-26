@@ -1,14 +1,12 @@
+import { json } from 'react-router-dom';
 import { PostModel, datas } from '../model';
-import {instance} from './instance';
+import axiosInstance from './instance';
+import axios from 'axios';
 
-
-function getPostListApi(userId) {
-    // const jsonList = await instance.get('/getpostlist');
-    // const dataList = JSON.parse(jsonList);
-    const dataList = datas;
-    const postList = dataList.map(data=> new PostModel(data) );
-
-    return postList;
+async function getPostListApi(userId) {
+    const response = await axiosInstance.get('/');
+    return await response.data;
 }
+
 
 export {getPostListApi};
