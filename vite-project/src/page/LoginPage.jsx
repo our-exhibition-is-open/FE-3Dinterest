@@ -7,6 +7,8 @@ import { checkingSubmitValue, checkingValue} from "../util/register/checkingValu
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
 import { LogoContainer } from "../component/common/LogoComponent";
+import { useUserStore } from "../model/userStore";
+
 
 const CommonText = styled.div`
     z-index: 1;
@@ -60,6 +62,7 @@ export function LoginPage({setLoginSuccess}) {
     const [value, setValue] = useState({id: "", pw: "", pwValid: "", email: ""});
     const [properCount, setProperCount] = useState({id: false, pw: false, pwValid: false, email: false});
     const [buttonState, setButtonState] = useState(false);
+    const {isLoggedIn, userId, loginUser} = useUserStore();
 
     const navigate = useNavigate();
 
@@ -73,12 +76,12 @@ export function LoginPage({setLoginSuccess}) {
         setButtonState(checkingSubmitValue(properCount));
         console.log(properCount);
     }
-
+    console.log(isLoggedIn);
+    console.log(userId);
     function handlingSubmit() {
-        // if() {//로그인 성공하면 부모 컴포넌트 값 변경하기 -> 인트로페이지 조정하기 위해
-
-        // }
-
+        loginUser(value.id);
+        localStorage.setItem("userId", value.id);
+        navigate('/');
     }
 
     function handleClickLogo () {
