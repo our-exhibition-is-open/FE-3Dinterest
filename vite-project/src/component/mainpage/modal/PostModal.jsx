@@ -129,6 +129,7 @@ export function PostModal(props) {
     getContributeListApi(postState.postId).then((response) => {
       setDataList(response);
     });
+    console.log("request" + postState.postId);
   }, [postState]);
 
   function handlePostClick(post) {

@@ -11,7 +11,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   z-index: 3;
-  margin-top: 0%;
+  margin-top: 3%;
   gap: 1.1rem;
   width: 65rem;
 `;

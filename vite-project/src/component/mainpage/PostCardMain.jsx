@@ -38,7 +38,7 @@ const PostContainer = styled.div`
 
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 14.75rem;
   height: 14.75rem;
   border-radius: 1rem;
@@ -54,6 +54,7 @@ const PostContainer = styled.div`
     }
   }
 `;
+
 
 export function PostCardMain(props) {
   const post = props.post;
