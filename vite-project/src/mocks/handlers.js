@@ -9,4 +9,9 @@ export const handlers = [
   http.get("/contribute", () => {
     return HttpResponse.json(posts);
   }),
+  
+  http.post("/api/posts/:postId/like", ({params}) => {
+    console.log("msw : " + params.postId);
+    return HttpResponse(null, {status: 200})
+  })
 ];
