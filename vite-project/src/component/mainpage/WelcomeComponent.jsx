@@ -8,42 +8,63 @@ const Container = styled.div`
 `
 
 const WelcomeComponentH1 = styled.h1`
+    z-index: 2;
     margin: 0 auto;
-    margin-top: 4.56rem;
+    margin-top: 8rem;
 
-    width: 26.0625rem;
-    height: 2.1rem;
+    width: 26.062rem;
+    height: 100%;
 
-    color: #000;
-    font-family: "SF-Pro-Rounded-Regular";
-    font-size: 1.875rem;
+    background: radial-gradient(circle farthest-corner at top center, #CF0000 1%, #000000 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-family: "San Francisco";
+    font-size: 2.5rem;
     text-align: center;
 
     font-style: normal;
-    font-weight: 600;
+    font-weight: 800;
     line-height: normal;
-    letter-spacing: 0.06563rem;
-`
-const WelcomeComponentH2 = styled(WelcomeComponentH1)`
-    margin-top: 0.5%;
-    
-    height: 2.1875rem;
-    flex-shrink: 0;
-    font-size: 1.25rem;
+    letter-spacing: 0.2rem;
 `
 
-const WelcomeComponentH3 = styled(WelcomeComponentH1)`
-    margin-top: 1%;
-    margin-bottom: 1%;
-    font-size: 0.75rem;
+
+const WelcomeComponentH2 = styled.div`
+    z-index: 1;
+    margin-top: 0%;
+    margin-left: 0.6%;
+    height: 2.1875rem;
+    flex-shrink: 0;
+
+    font-family: "San Francisco";
+    font-size: 1.7rem;
+    font-weight: 600;
+
+    letter-spacing: 0.15rem;
+`
+
+const WelcomeComponentH3 = styled.div`
+    margin-top: 4%;
+    margin-bottom: 0.2%;
+    font-size: 0.8rem;
+
+    z-index: 1;
+    height: 2.1875rem;
+    flex-shrink: 0;
+
+    font-family: "San Francisco";
+    font-weight: 600;
+
+    letter-spacing: 0.1rem;
 `
 
 export function WelcomeHeader(props){
     return (
         <>
         <Container>
-            <WelcomeComponentH1>{props.userName}의</WelcomeComponentH1>
-            <WelcomeComponentH2>3Dinterest</WelcomeComponentH2>
+            <WelcomeComponentH1>안녕하세요</WelcomeComponentH1>
+            <WelcomeComponentH2>{props.userName} 님.</WelcomeComponentH2>
             <WelcomeComponentH3>{props.modelCount}개 저장됨</WelcomeComponentH3>
         </Container>
         </>

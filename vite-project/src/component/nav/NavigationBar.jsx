@@ -20,9 +20,10 @@ const Header = styled.header`
         align-items: flex-start;
         gap: 10px;
 
-        background:#ffffffea; backdrop-filter: blur(3px);
+        background:#ffffff3d; 
+        backdrop-filter: blur(10px);
 
-        box-shadow: 0px 0px 10px 0.1px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 0px 10px 0.1px rgba(0, 0, 0, 0.376);
 `;
 
 export function NavigationBar() {

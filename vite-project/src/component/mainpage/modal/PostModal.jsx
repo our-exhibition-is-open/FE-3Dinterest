@@ -1,9 +1,6 @@
 import React, { Suspense } from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { CameraControls } from '@react-three/drei';
-import { useLoader } from "@react-three/fiber";
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { getPostListApi } from "../../../api/getPostListApi";
 
 import { ContributePost } from "./ContributePost";
@@ -33,7 +30,7 @@ const ModalContainer = styled.div`
     z-index: 1001;
     flex-direction: row;
     width: 55.6875rem;
-    height: 41.875rem;
+    height: 39rem;
     justify-self: center;
     justify-content: center;
     position: fixed;
@@ -41,6 +38,8 @@ const ModalContainer = styled.div`
     bottom: 0;
     margin-top: auto;
     margin-bottom: auto;
+    padding-top: 1.6rem;
+    padding-right: 6.7px;
     border-radius: 1.5rem;
     background: #FFF;
 `
@@ -57,10 +56,9 @@ const ModalPostContainer = styled.div`
 const PostCanvas = styled.div`
     z-index: 1002;
     width: 39.375rem;
-    height: 29.875rem;
+    height: 28.3rem;
     flex-shrink: 0;
     position: static;
-    margin-top: 2.06rem;
     margin-left: 1.37rem;
 `
 const Title = styled.div`
@@ -74,8 +72,8 @@ const Title = styled.div`
     line-height: normal;
     letter-spacing: 0.05469rem;
 
-    margin-top: 0.69rem;
-    margin-left: 1.38rem;
+    margin-top: 0.8rem;
+    margin-left: 1.7rem;
 `
 const InfoContainer = styled.div`
     display: flex;
@@ -83,7 +81,7 @@ const InfoContainer = styled.div`
     width: 29rem;
     height: 1.375rem;
     margin-top: 0.31rem;
-    margin-left: 1.55rem;
+    margin-left: 1.7rem;
 `
 
 const UploadTimeWrapper = styled.div`
@@ -116,7 +114,7 @@ const ContributeContainer = styled.div`
     gap: 0.5rem;
     align-items: center;
     overflow: scroll;
-    padding-top: 2.19rem;
+    
     
     &::-webkit-scrollbar {
     display: none;

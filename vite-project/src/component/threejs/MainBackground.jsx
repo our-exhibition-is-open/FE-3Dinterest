@@ -19,15 +19,16 @@ export const BackgroundContainer = styled.div`
 
 const accents = ['#4060ff', '#20ffa0', '#ff4060', '#ffcc00']
 const shuffle = (accent = 0) => [
-  { color: '#444', roughness: 0.1 },
-  { color: '#444', roughness: 0.75 },
-  { color: '#444', roughness: 0.75 },
-  { color: 'white', roughness: 0.1 },
+  { color: '#4060ff', roughness: 0 },
+  { color: '#ffffff', roughness: 0.075 },
+  { color: 'white', roughness: 0.01 },
   { color: 'white', roughness: 0.75 },
-  { color: 'white', roughness: 0.1 },
-  { color: accents[accent], roughness: 0.1, accent: true },
-  { color: accents[accent], roughness: 0.75, accent: true },
-  { color: accents[accent], roughness: 0.1, accent: true }
+  { color: 'white', roughness: 0.01 },
+  { color: accents[accent+1], roughness: 1, accent: true },
+  { color: accents[accent+1], roughness: 0, accent: true },
+  { color: accents[accent], roughness: 0.5, accent: true },
+  { color: accents[accent], roughness: 5, accent: true },
+  { color: accents[accent], roughness: 0, accent: true }
 ]
 
 export function MainBackground(props) {
