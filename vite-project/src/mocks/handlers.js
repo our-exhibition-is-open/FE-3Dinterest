@@ -1,7 +1,12 @@
-import {rest} from "msw";
+import { http, HttpResponse } from 'msw';
+import posts from "./dummyPost.json";
 
 export const handlers = [
-    rest.get("/", (req, res, ctx) =>{
-        return res(ctx.status(200), ctx.json())
-    })
+    http.get('/', () => {
+        return HttpResponse.json(posts)
+    }),
+    
+    http.get('/contribute', () => {
+        return HttpResponse.json(posts)
+    }),
 ]
