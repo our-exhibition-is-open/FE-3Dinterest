@@ -67,12 +67,11 @@ export function PostCardMain(props) {
 
     function handleBackgroundClick() {
         setClicked(false);
-        console.log("im clicked 2222");
     }
     function handlePostClick() {
         setClicked(true);
-        console.log("33333333");
     }
+    console.log(post.title);
     
     return (
         <>

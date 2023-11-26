@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from 'styled-components';
+import axios from 'axios';
+
 
 import { datas, PostModel } from "../../model";
 import { PostCardMain } from "./PostCardMain";
@@ -18,17 +20,20 @@ const Container = styled.div`
 `
 
 export function PostList(props) {
-    
+    const [dataList, setDataList] = useState([]);
 
-    const postList = getPostListApi(23);
-    const postComponentList = postList.map((post, index) => 
-        <PostCardMain key={index} post={post} />
-        )
+    useEffect(() => {
+        getPostListApi().then( (response) => {
+            setDataList(response);
+        });
+    }, []);
 
-        
+    const postComponentList = dataList.map( (data, index) => 
+                <PostCardMain key={index} post={new PostModel(data)} />
+    )
     return (
         <Container>
             {postComponentList}
         </Container>
-    );
+    )
 }
