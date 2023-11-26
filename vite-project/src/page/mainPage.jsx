@@ -6,6 +6,7 @@ import { PostList } from "../component/mainpage/PostList.jsx";
 import { WelcomeHeader } from "../component/mainpage/WelcomeComponent";
 import { useUserStore } from "../model/userStore.js";
 import { getPostListApi } from "../api/getPostListApi.js";
+import { LikeComponent } from "../component/common/LikeComponent.jsx";
 
 const Container = styled.div`
   display: flex;

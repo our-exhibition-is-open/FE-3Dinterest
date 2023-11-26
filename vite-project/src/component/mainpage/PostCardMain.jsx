@@ -5,6 +5,7 @@ import { styled } from "styled-components";
 import * as THREE from "three";
 import { ModalBackground, PostModal } from "./modal/PostModal";
 import { getContributeListApi } from "../../api/getContributeListApi";
+import { LikeComponent, LikeContainer } from "../common/LikeComponent";
 
 const ImageWrapper = styled.img`
   cursor: pointer;
@@ -52,6 +53,9 @@ const PostContainer = styled.div`
     ${TitleWrapper} {
       visibility: visible;
     }
+    ${LikeContainer} {
+        visibility: visible;
+    }
   }
 `;
 
@@ -78,8 +82,9 @@ export function PostCardMain(props) {
   return (
     <>
       <PostContainer>
-        <ImageWrapper src={post.imageUrl} onClick={handlePostClick} />
+        <ImageWrapper src={post.imageUrl} onClick={handlePostClick}/>
         <TitleWrapper>{post.title}</TitleWrapper>
+        <LikeComponent/>
       </PostContainer>
 
       {isClicked && (
