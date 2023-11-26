@@ -30,19 +30,18 @@ export const Button = styled.button`
     height: 2rem;
     width: 100%;
 
-    background:${(props) => props.buttoncolor};
-    backdrop-filter: blur(50px);
     border-radius: 0.4rem;
     border: 0;
-
+    
     font-family: "San Francisco";
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     letter-spacing: 0.05469rem;
     color: #ffffff;
-
-    box-shadow: 0 0 0px #ff0000, 0 0 0px #ff2525c7, 0 0 0px #ff2222, 0 0 0px #ff1919,
+    
+    background:${(props) => props.buttoncolor};
+    box-shadow: 0 0 0px #ffffff, 0 0 0px #ffffffc6, 0 0 0px #ffffff, 0 0 0px #ffffff,
     0 0 5px ${(props) => props.buttoncolor},
     0 0 7px ${(props) => props.buttoncolor};
 
