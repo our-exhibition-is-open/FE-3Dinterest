@@ -1,10 +1,11 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { getPostListApi } from "../../../api/getPostListApi";
 
 import { ContributePost } from "./ContributePost";
 import { Scene } from "../../threejs/Scene";
+import { getContributeListApi } from "../../../api/getContributeListApi";
 
 
 export const ModalBackground = styled.div`
@@ -123,17 +124,29 @@ const ContributeContainer = styled.div`
 
 export function PostModal(props) {
     const [postState, setPostState] = useState(props.post);
-    const postList = getPostListApi(23);
-    //TODO: 컨트리뷰트 api로 변경하기
-    const postComponentList = postList.map((post, index) => 
-        <div onClick={()=>{handlePostClick(post); console.log("imclicked")}} key={index}>
-                <ContributePost post={post} />
-        </div>
-    );
+    const [dataList, setDataList] = useState([]);
+    const [postComponentList, setPostComponentList] = useState([]);
+    useEffect(() => {
+        getContributeListApi(postState.postId)
+        .then((response) => {
+            setPostComponentList(
+                response.map((data, index) => 
+                <div onClick={()=>{handlePostClick( new PostModal(data) )}} key={index}>
+                        <ContributePost post={ new PostModal(data) } />
+                </div>
+                )
+            )
+        })
+    }, [])
+
+    // dataList.map((data, index) => 
+    //     <div onClick={()=>{handlePostClick( new PostModal(data) )}} key={index}>
+    //             <ContributePost post={ new PostModal(data) } />
+    //     </div>
+    // );
     
     function handlePostClick(post) {
         setPostState(post);
-        console.log(post.user);
     }
 
     return (

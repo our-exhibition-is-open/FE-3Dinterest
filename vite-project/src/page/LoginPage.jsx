@@ -81,11 +81,14 @@ export function LoginPage({setLoginSuccess}) {
     function handlingSubmit() {
         loginUser(value.id);
         localStorage.setItem("userId", value.id);
-        navigate('/');
+        
+        // navigate('/');
     }
 
     function handleClickLogo () {
-        navigate('/login');
+        fetch("/login")
+            .then((response) => response.json())
+            .then((data) => console.log(data));
     }
 
     return (
