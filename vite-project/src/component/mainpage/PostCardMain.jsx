@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import * as THREE from "three";
 import { ModalBackground, PostModal } from "./modal/PostModal";
+import { getContributeListApi } from "../../api/getContributeListApi";
 
 const ImageWrapper = styled.img`
   cursor: pointer;
@@ -68,7 +69,9 @@ export function PostCardMain(props) {
     setClicked(false);
   }
   function handlePostClick() {
+    
     setClicked(true);
+    
   }
 
   return (
