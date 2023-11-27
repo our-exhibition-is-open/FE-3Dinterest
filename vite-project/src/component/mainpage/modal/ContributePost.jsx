@@ -7,7 +7,8 @@ import * as THREE from 'three';
 
 const BackgroundContainer = styled.div`
     background-color: black;
-    height: 12.8125rem;
+    width: 13rem;
+    height: 12.5rem;
     border-radius: 0.9rem;
 `
 
@@ -37,13 +38,14 @@ export const TitleWrapper = styled.div`
     margin-left: 2px;
 `
 
+
 const PostContainer = styled.div`
     z-index: 1002;
 
     /* position: relative; */
     display: flex;
     flex-direction: column;
-    width: 13.3125rem;
+    width: 13rem;
     height: 14.8125rem;
     overflow: hidden;
     

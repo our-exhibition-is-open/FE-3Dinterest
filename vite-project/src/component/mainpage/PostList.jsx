@@ -1,34 +1,34 @@
-import React, { useState } from "react";
-import { styled } from 'styled-components';
+import React, { useEffect, useState } from "react";
+import { styled } from "styled-components";
 
-import { datas, PostModel } from "../../model";
+import { PostModel } from "../../model";
 import { PostCardMain } from "./PostCardMain";
-import { getPostListApi } from "../../api/getPostListApi"
+import { getPostListApi } from "../../api/getPostListApi";
 import { ModalBackground, PostModal } from "./modal/PostModal";
 
 const Container = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
-    z-index: 3;
-    margin-top: 0%;
-    gap: 1.1rem;
-    width: 65rem;
-`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 3;
+  margin-top: 3%;
+  gap: 1.1rem;
+  width: 65rem;
+`;
 
 export function PostList(props) {
-    
+  const [dataList, setDataList] = useState([]);
 
-    const postList = getPostListApi(23);
-    const postComponentList = postList.map((post, index) => 
-        <PostCardMain key={index} post={post} />
-        )
+  useEffect(() => {
+    getPostListApi().then((response) => {
+      setDataList(response);
+      console.log(response[1]);
+    });
+  }, []);
 
-        
-    return (
-        <Container>
-            {postComponentList}
-        </Container>
-    );
+  const postComponentList = dataList.map((data, index) => (
+    <PostCardMain key={index} post={new PostModel(data)} isLogged={props.isLogged} />
+  ));
+
+  return <Container>{postComponentList}</Container>;
 }

@@ -1,14 +1,10 @@
-import { PostModel, datas } from '../model';
-import {instance} from './instance';
+import axiosInstance from './instance';
 
-
-function getPostListApi(userId) {
-    // const jsonList = await instance.get('/getpostlist');
-    // const dataList = JSON.parse(jsonList);
-    const dataList = datas;
-    const postList = dataList.map(data=> new PostModel(data) );
-
-    return postList;
+async function getPostListApi(userId) {
+    const response = await axiosInstance.get('/');
+    console.log("good")
+    return await response.data;
 }
+
 
 export {getPostListApi};

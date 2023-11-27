@@ -77,7 +77,7 @@ export function RegisterPage() {
     }
 
     function handleClickToMain () {
-        navigate('/register');
+        navigate('/');
     }
 
     return (
