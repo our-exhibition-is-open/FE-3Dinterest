@@ -12,6 +12,6 @@ export const handlers = [
   
   http.post("/api/posts/:postId/like", ({params}) => {
     console.log("msw : " + params.postId);
-    return HttpResponse(null, {status: 200})
+    return new HttpResponse(null, {status: 200})
   })
 ];
