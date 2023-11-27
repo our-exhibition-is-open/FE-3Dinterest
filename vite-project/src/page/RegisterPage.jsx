@@ -6,7 +6,7 @@ import { InputComponent } from "../component/common/InputComponent";
 import { checkingSubmitValue, checkingValue} from "../util/register/checkingValue";
 import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
-import { LogoContainer } from "../component/common/LogoComponent";
+import LogoComponent from "../component/common/LogoComponent";
 
 const CommonText = styled.div`
     z-index: 1;
@@ -76,10 +76,6 @@ export function RegisterPage() {
         navigate('/login');
     }
 
-    function handleClickToMain () {
-        navigate('/');
-    }
-
     return (
         <>
         <BodyContainer>
@@ -87,9 +83,7 @@ export function RegisterPage() {
                 <MainBackground/>
             </BackgroundContainer>
             
-            <LogoContainer onClick={handleClickToMain}>
-            3Dinterest
-            </LogoContainer>
+            <LogoComponent/>
             
             <form onSubmit={handlingSubmit}> 
                 <ContentsContainer>

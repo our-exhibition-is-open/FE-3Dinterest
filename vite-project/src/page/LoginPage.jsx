@@ -12,8 +12,7 @@ import {
   MainBackground,
 } from "../component/threejs/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
-import { LogoContainer } from "../component/common/LogoComponent";
-import { useUserStore } from "../model/userStore";
+import LogoComponent from "../component/common/LogoComponent";
 
 const CommonText = styled.div`
   z-index: 1;
@@ -74,7 +73,6 @@ export function LoginPage({ setLoginSuccess }) {
   });
   const [buttonState, setButtonState] = useState(false);
 
-  const { isLoggedIn, userId, loginUser } = useUserStore();
 
   const navigate = useNavigate();
 
@@ -93,9 +91,7 @@ export function LoginPage({ setLoginSuccess }) {
     navigate("/");
   }
 
-  function handleClickLogo() {
-    navigate("/");
-  }
+  
 
   return (
     <>
@@ -104,7 +100,7 @@ export function LoginPage({ setLoginSuccess }) {
           <MainBackground />
         </BackgroundContainer>
 
-        <LogoContainer onClick={handleClickLogo}>3Dinterest</LogoContainer>
+        <LogoComponent/>
 
         <form onSubmit={handlingSubmit}>
           <ContentsContainer>
