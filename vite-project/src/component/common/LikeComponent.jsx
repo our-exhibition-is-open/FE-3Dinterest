@@ -1,29 +1,38 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { postLikeApi } from "../../api/postLikeApi";
+import { useNavigate } from "react-router-dom";
 
-export const LikeContainer = styled.img`
-  cursor: pointer;
-  width: 12%;
-  height: 12%;
 
-  position: absolute;
-  right: 10%;
-  top: 9%;
-  visibility: hidden;
-`;
-
-export function LikeComponent() {
+export function LikeComponent(props) {
   const [isHovering, setIsHovering] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
+  const navigate = useNavigate();
   function handleCilck() {
-    setIsLiked(true);
+    if (props.isLogged) {
+      setIsLiked(!isLiked);
+      postLikeApi(
+        props.postId,
+        sessionStorage.getItem("userId"),
+        isLiked
+      ).catch((error) => {
+        console.log(error);
+      });
+    } else {
+      alert("로그인 먼저 하세요.");
+      navigate("/login");
+    }
   }
+//   console.log("like state : " + isLiked);
   return (
     <>
-      {isLiked ? (
-        <LikeContainer src="/src/resource/image/icon_heart_hover.png" />
+      {isLiked && props.isLogged ? (
+        <img style={{width: "28.31px", height: "28.31px"}}
+          src="/src/resource/image/icon_heart_hover.png"
+          onClick={handleCilck}
+        />
       ) : (
-        <LikeContainer
+        <img style={{width: "28.31px", height: "28.31px"}}
           src={`/src/resource/image/icon_heart${
             isHovering ? "_hover" : ""
           }.png`}

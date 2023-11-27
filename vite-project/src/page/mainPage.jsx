@@ -19,8 +19,10 @@ export default function MainPage() {
     (sessionStorage.getItem("isLoggedIn") == "true") ? true : false
   );
 
+
   function handleLogOut() {
     setIsLogged(false);
+    // logoutUser();
     alert("로그아웃되었습니다.");
     sessionStorage.setItem("isLoggedIn", false);
     sessionStorage.setItem("userId", null);
@@ -30,7 +32,7 @@ export default function MainPage() {
     <Container>
       <NavigationBar isLogged={isLogged} handleLogOut={handleLogOut} />
       <WelcomeHeader isLogged={isLogged} userName={sessionStorage.getItem("userId")}/>
-      <PostList />
+      <PostList isLogged={isLogged}/>
     </Container>
   );
 }
