@@ -17,7 +17,7 @@ export const Button = styled.h1`
     text-align: center;
     font-size: 15px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 100;
     line-height: normal;
 
     font-family: "SF-Pro-Rounded-Regular";
@@ -25,7 +25,7 @@ export const Button = styled.h1`
     &:after {
         content: "";
         display: block;
-        width: 100%; height: 2px;
+        width: 100%; height: 1px;
         background: #000;
         transition: all 0.1s;
     }

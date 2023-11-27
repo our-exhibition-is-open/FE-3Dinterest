@@ -23,7 +23,7 @@ export const TitleWrapper = styled.div`
   font-family: "SF-Pro-Rounded-Regular";
   font-size: 1rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   line-height: normal;
   letter-spacing: 0.02844rem;
 

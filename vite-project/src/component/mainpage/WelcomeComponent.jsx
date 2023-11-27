@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -19,14 +20,14 @@ const WelcomeComponentH1 = styled.h1`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; */
 
-  font-family: "San Francisco";
+    font-family: "SF-Pro-Rounded-Regular";
   font-size: 2.5rem;
   text-align: center;
 
   font-style: normal;
-  font-weight: 800;
+  font-weight: 600;
   line-height: normal;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.5rem;
 `;
 
 const WelcomeComponentH2 = styled.div`
@@ -36,7 +37,7 @@ const WelcomeComponentH2 = styled.div`
   height: 2.1875rem;
   flex-shrink: 0;
 
-  font-family: "San Francisco";
+  font-family: "SF-Pro-Rounded-Regular";
   font-size: 1.7rem;
   font-weight: 600;
 
@@ -52,14 +53,13 @@ const WelcomeComponentH3 = styled.div`
   height: 2.1875rem;
   flex-shrink: 0;
 
-  font-family: "San Francisco";
+  font-family: "SF-Pro-Rounded-Regular";
   font-weight: 600;
 
   letter-spacing: 0.1rem;
 `;
 
 export function WelcomeHeader(props) {
-
   return (
     <>
       <Container>
@@ -70,7 +70,11 @@ export function WelcomeHeader(props) {
           </>
         ) : (
           <>
-            <WelcomeComponentH1>3Dinterest</WelcomeComponentH1>
+            <WelcomeComponentH1>
+              <Link to="/" style={{ color: "black", textDecoration: "none" }}>
+                3Dinterest
+              </Link>
+            </WelcomeComponentH1>
             <WelcomeComponentH3>로그인 해주세요.</WelcomeComponentH3>
           </>
         )}

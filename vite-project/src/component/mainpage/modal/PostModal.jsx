@@ -70,7 +70,7 @@ const Title = styled.div`
   font-family: "San Francisco";
   font-size: 1.5625rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: normal;
   letter-spacing: 0.05469rem;
 
