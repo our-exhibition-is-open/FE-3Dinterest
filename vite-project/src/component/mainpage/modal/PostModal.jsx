@@ -7,6 +7,7 @@ import { PostModel } from "../../../model";
 import { ContributePost } from "./ContributePost";
 import { Scene } from "../../threejs/Scene";
 import { getContributeListApi } from "../../../api/getContributeListApi";
+import { LikeComponent } from "../../common/LikeComponent";
 
 export const ModalBackground = styled.div`
   display: flex;
@@ -61,6 +62,7 @@ const PostCanvas = styled.div`
   position: static;
   margin-left: 1.37rem;
 `;
+
 const Title = styled.div`
   width: 29rem;
   height: 1.9375rem;
@@ -75,6 +77,17 @@ const Title = styled.div`
   margin-top: 0.8rem;
   margin-left: 1.7rem;
 `;
+
+const RowContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+`
+
+const LikeContainer = styled.div`
+  margin-top: 2%;
+  margin-left: 17%;
+`
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -110,8 +123,10 @@ const ContributeContainer = styled.div`
   flex-direction: column;
   background-color: #ffffff;
   width: 100%;
-  border-radius: 0rem 1.5rem 1.5rem 0;
-  gap: 0.5rem;
+  border-radius: 1rem;
+
+  padding-left: 0.3rem;
+  gap: 0rem;
   align-items: center;
   overflow: scroll;
 
@@ -145,7 +160,13 @@ export function PostModal(props) {
               <Scene gltfUrl={postState.modelUrl} />
             </Suspense>
           </PostCanvas>
-          <Title>{postState.title}</Title>
+          <RowContainer>
+            <Title>{postState.title}</Title>
+            <LikeContainer>
+              <LikeComponent isLogged={props.isLogged}
+            postId={postState.postId}/>
+            </LikeContainer>
+          </RowContainer>
           <InfoContainer>
             <UploadTimeWrapper>
               upload time: {postState.uploadTime}
