@@ -27,7 +27,7 @@ export function PostList(props) {
   }, []);
 
   const postComponentList = dataList.map((data, index) => (
-    <PostCardMain key={index} post={new PostModel(data)} />
+    <PostCardMain key={index} post={new PostModel(data)} isLogged={props.isLogged} />
   ));
 
   return <Container>{postComponentList}</Container>;

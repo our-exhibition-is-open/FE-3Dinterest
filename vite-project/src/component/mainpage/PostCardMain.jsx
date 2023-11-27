@@ -2,10 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import * as THREE from "three";
 import { ModalBackground, PostModal } from "./modal/PostModal";
-import { getContributeListApi } from "../../api/getContributeListApi";
-import { LikeComponent, LikeContainer } from "../common/LikeComponent";
+import { LikeComponent } from "../common/LikeComponent";
+import { postLikeApi } from "../../api/postLikeApi";
 
 const ImageWrapper = styled.img`
   cursor: pointer;
@@ -34,6 +33,19 @@ export const TitleWrapper = styled.div`
   visibility: hidden;
 `;
 
+
+const LikeContainer = styled.div`
+  cursor: pointer;
+  width: 12%;
+  height: 12%;
+  visibility: hidden;
+  
+  position: absolute;
+  right: 10%;
+  top: 9%;
+`
+
+
 const PostContainer = styled.div`
   z-index: 0;
 
@@ -54,11 +66,10 @@ const PostContainer = styled.div`
       visibility: visible;
     }
     ${LikeContainer} {
-        visibility: visible;
+      visibility: visible;
     }
   }
 `;
-
 
 export function PostCardMain(props) {
   const post = props.post;
@@ -70,27 +81,30 @@ export function PostCardMain(props) {
     document.body.style.overflow = "auto";
   }
 
-  function handleBackgroundClick() {
+  function handleBackgroundClick(props) {
     setClicked(false);
   }
   function handlePostClick() {
-    
     setClicked(true);
-    
   }
 
   return (
     <>
       <PostContainer>
-        <ImageWrapper src={post.imageUrl} onClick={handlePostClick}/>
+        <ImageWrapper src={post.imageUrl} onClick={handlePostClick} />
         <TitleWrapper>{post.title}</TitleWrapper>
-        <LikeComponent/>
+        <LikeContainer>
+          <LikeComponent
+            isLogged={props.isLogged}
+            postId={post.postId}
+          />
+        </LikeContainer>
       </PostContainer>
 
       {isClicked && (
         <>
           <ModalBackground onClick={handleBackgroundClick} />
-          <PostModal post={props.post} />
+          <PostModal post={props.post} isLogged={props.isLogged}/>
         </>
       )}
     </>
