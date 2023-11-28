@@ -31,7 +31,7 @@ export default function MainPage() {
   return (
     <Container>
       <NavigationBar isLogged={isLogged} handleLogOut={handleLogOut} />
-      <WelcomeHeader isLogged={isLogged} userName={sessionStorage.getItem("userId")}/>
+      {/* <WelcomeHeader isLogged={isLogged} userName={sessionStorage.getItem("userId")}/> */}
       <PostList isLogged={isLogged}/>
     </Container>
   );
