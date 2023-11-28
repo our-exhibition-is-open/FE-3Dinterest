@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-
 import { styled } from "styled-components";
-
 import { Button, ButtonComponent } from "./ButtonComponent";
 import { Link } from "react-router-dom";
-import { useUserStore } from "../../model/userStore";
-import LogoComponent from "../common/LogoComponent";
 
 const Header = styled.header`
   z-index: 10;
   position: fixed;
   top: 0;
-  /* width: 100% */
   left: 0;
   right: 0;
   display: flex;
@@ -21,8 +16,16 @@ const Header = styled.header`
   align-items: flex-start;
   gap: 10px;
 
-  background: #ffffff3d;
+  background: #ffffffc1;
   backdrop-filter: blur(10px);
+
+  border-style: solid;
+  border-bottom-width: 2px;
+  border-top:0px;
+  border-left: 0px;
+  border-right: 0px;
+  /* border-bottom: 0px; */
+  border-color: red;
 
   box-shadow: 0px 0px 10px 0.1px rgba(0, 0, 0, 0.376);
 `;
@@ -44,34 +47,50 @@ export function NavigationBar(props) {
   return (
     <>
       <Header>
-        {props.isLogged && (
+        
           <LogoContainer>
             <Link to="/" style={{ color: "black", textDecoration: "none" }}>
               3Dinterest
             </Link>
           </LogoContainer>
+        
+
+        {props.isLogged ? (
+          <Button onClick={props.handleLogOut}>Logout</Button>
+        ) : (
+          <ButtonComponent buttonName="Login" route="/login" />
         )}
-        <div>
-          {props.isLogged ? (
-            <Button onClick={props.handleLogOut}>로그아웃</Button>
-          ) : (
-            <ButtonComponent buttonName="Login" route="/login" />
-          )}
-        </div>
-        <Button>
-          <Link
-            to="/register"
-            style={{ color: "black", textDecoration: "none" }}
-          >
-            Sign Up
-          </Link>
-        </Button>
-        <div>
-          <ButtonComponent buttonName="Upload" route="/upload" />
-        </div>
-        <div>
-          <ButtonComponent buttonName="Contribute" route="/Contribute" />
-        </div>
+
+        <ButtonComponent buttonName="Sign Up" route="/register" />
+        {props.isLogged ? (
+          <>
+            <ButtonComponent buttonName="Upload" route="/upload" />
+            <ButtonComponent buttonName="Contribute" route="/contribute" />
+          </>
+        ) : (
+          <>
+            <Button
+              onClick={() => {
+                alert("로그인 먼저 해주세요.");
+              }}
+            >
+              <Link
+                to="/login"
+                style={{ color: "black", textDecoration: "none" }}
+              >
+                Upload
+              </Link>
+            </Button>
+            <Button onClick={() => alert("로그인 먼저 해주세요.")}>
+              <Link
+                to="/login"
+                style={{ color: "black", textDecoration: "none" }}
+              >
+                Contribute
+              </Link>
+            </Button>
+          </>
+        )}
       </Header>
     </>
   );
