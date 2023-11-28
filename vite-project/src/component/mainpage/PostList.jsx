@@ -11,9 +11,9 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   z-index: 3;
-  margin-top: 3%;
+  margin-top: 6%;
   gap: 1.1rem;
-  width: 65rem;
+  width: 80rem;
 `;
 
 export function PostList(props) {

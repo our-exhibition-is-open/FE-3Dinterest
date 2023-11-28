@@ -107,14 +107,7 @@ const UploadTimeWrapper = styled.div`
   letter-spacing: 0.02625rem;
 `;
 
-const UserWrapper = styled.div`
-  color: #9f9f9f;
-  font-family: "Sudo Var", sans-serif;
-  font-size: 0.8rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.02625rem;
+const UserWrapper = styled(UploadTimeWrapper)`
   margin-left: 2rem;
 `;
 
