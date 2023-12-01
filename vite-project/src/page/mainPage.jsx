@@ -4,7 +4,6 @@ import { styled } from "styled-components";
 import { NavigationBar } from "../component/nav/NavigationBar.jsx";
 import { PostList } from "../component/mainpage/PostList.jsx";
 import { WelcomeHeader } from "../component/mainpage/WelcomeComponent";
-import { useUserStore } from "../model/userStore.js";
 import { getPostListApi } from "../api/getPostListApi.js";
 import { LikeComponent } from "../component/common/LikeComponent.jsx";
 
