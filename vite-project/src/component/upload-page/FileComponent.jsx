@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState, Suspense } from "react";
 import styled from "styled-components";
+import { Scene } from "../threejs/Scene";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useThree } from "@react-three/fiber";
+import { fileNameParser } from "../../util/upload/fileNameParser";
 
 const FileContainer = styled.div`
   display: flex;
@@ -7,10 +11,11 @@ const FileContainer = styled.div`
   justify-content: center;
 `;
 
-const PostCanvas = styled.div`
+const PostCanvas = styled.label`
+  cursor: pointer;
   width: 39.375rem;
   height: 28.3rem;
-  
+
   border-radius: 26px;
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='26' ry='26' stroke='%23333' stroke-width='3' stroke-dasharray='17' stroke-dashoffset='36' stroke-linecap='round'/%3e%3c/svg%3e");
 
@@ -18,12 +23,13 @@ const PostCanvas = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 `;
 
 const Info = styled.div`
   color: #9f9f9f;
-  font-family: "Sudo Var", sans-serif;
-  font-size: 0.8rem;
+  font-family: "SF-Pro-Rounded-Regular";
+  font-size: 0.9rem;
   font-style: normal;
   font-weight: 100;
   line-height: normal;
@@ -31,19 +37,49 @@ const Info = styled.div`
 `;
 
 export function FileComponent() {
-  const [loadedFile, setLoadedFile] = useState("");
+  const [loadedFile, setLoadedFile] = useState(null);
+  
+
+  function handleChange(e) {
+    const file = e.target.files[0];
+    setLoadedFile(file);
+  }
 
   return (
     <>
       <FileContainer>
-        {loadedFile == "" ? (
+        {loadedFile == null ? (
           <>
             <PostCanvas>
-              <Info>gltf파일을 업로드해주세요.</Info>
+              <input
+                type="file"
+                accept=".glb,.3dm"
+                id="fileInput"
+                style={{ display: "none" }}
+                onChange={handleChange}
+              />
+              <Info
+                style={{
+                  fontFamily: "San Francisco",
+                  fontSize: "1.5rem",
+                  fontWeight: "700",
+                }}
+              >
+                Choose a file
+              </Info>
+              <Info>
+                We recommend using .glb format or .3dm format less than 100MB.
+              </Info>
             </PostCanvas>
           </>
         ) : (
-          <></>
+          <>
+            <PostCanvas>
+              <Suspense>
+                <Scene file={loadedFile}/>
+              </Suspense>
+            </PostCanvas>
+          </>
         )}
       </FileContainer>
     </>
