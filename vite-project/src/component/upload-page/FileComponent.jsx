@@ -9,6 +9,8 @@ const FileContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
+  padding-top: 14%;
 `;
 
 const PostCanvas = styled.label`
@@ -36,13 +38,14 @@ const Info = styled.div`
   letter-spacing: 0.02625rem;
 `;
 
-export function FileComponent() {
+export function FileComponent({changeGageLevel, currentGageLevel}) {
   const [loadedFile, setLoadedFile] = useState(null);
   
 
   function handleChange(e) {
     const file = e.target.files[0];
     setLoadedFile(file);
+    changeGageLevel(currentGageLevel + 3);
   }
 
   return (

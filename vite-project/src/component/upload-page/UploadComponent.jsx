@@ -3,15 +3,16 @@ import styled from "styled-components";
 import { useUploadImageStore } from "../../model/userStore";
 import { InputComponent } from "../common/InputComponent";
 import { SubmitButton } from "../common/SubmitButton";
-import { UploadInputComponent } from "./UploadInputComponent";
+import { UploadInputComponent } from "./UploadInputComponent";
+import { UploadSubmitComponent } from "./UploadSubmitComponent";
 
 const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 35rem;
-  height: 45rem;
-  margin-top: 7%;
-  padding-top: 20%;
+  height: 100%;
+
+  padding-top: 22%; 
   gap: 3rem;
 `;
 
@@ -22,7 +23,7 @@ export function UploadComponent() {
   return (
     <InputContainer>
       <UploadInputComponent/>
-      
+      <UploadSubmitComponent/>
     </InputContainer>
   );
 }
