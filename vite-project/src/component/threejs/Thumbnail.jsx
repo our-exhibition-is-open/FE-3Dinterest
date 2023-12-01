@@ -8,6 +8,5 @@ export function Thumbnail() {
     useEffect(() => {
         const image = gl.domElement.toDataURL("image/jpeg");
         setImage(image);
-        sessionStorage.setItem("uploadImage", image);
     }, [])
 }
