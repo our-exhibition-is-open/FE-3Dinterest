@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useThree } from "@react-three/fiber";
-import { useUploadImageStore } from "../../model/userStore";
+import { useUploadImageStore } from "../../model/useUploadImageStore";
 
 export function Thumbnail() {
     const { setImage } = useUploadImageStore();
