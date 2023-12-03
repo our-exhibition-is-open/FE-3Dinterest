@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect, Suspense } from "react";
 import { useLoader, useThree } from "@react-three/fiber";
 import { Rhino3dmLoader } from "three/examples/jsm/loaders/3DMLoader";
+import { useUploadStore } from "../../model";
 
 
-export function Loaded3Dm({file}) {
+export function Loaded3Dm() {
+    const {file} = useUploadStore();
     const { scene } = useThree();
     const fileReader = new FileReader();
 

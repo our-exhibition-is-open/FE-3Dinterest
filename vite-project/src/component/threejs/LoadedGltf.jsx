@@ -2,8 +2,10 @@ import React, { useRef, useState, useEffect, Suspense } from "react";
 import { useLoader, useThree } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Rhino3dmLoader } from "three/examples/jsm/loaders/3DMLoader";
+import { useUploadStore } from "../../model";
 
-export function LoadedGltf({ file }) {
+export function LoadedGltf() {
+  const {file} = useUploadStore();
   const { scene } = useThree();
   const fileReader = new FileReader();
 

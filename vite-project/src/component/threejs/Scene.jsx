@@ -7,9 +7,11 @@ import { LoadedGltf } from "./LoadedGltf";
 import { Loaded3Dm } from "./Loaded3Dm";
 import { fileNameParser } from "../../util/upload/fileNameParser";
 import { Thumbnail } from "./thumbnail";
+import { useUploadStore } from "../../model";
 
 export function Scene(props) {
-  const fileType = fileNameParser(props.file.name);
+  const {file} = useUploadStore();
+  const fileType = fileNameParser(file.name);
   const cameraControlRef = useRef(CameraControls, null);
 
   
@@ -49,9 +51,9 @@ export function Scene(props) {
           />
         <gridHelper args={[100, 100]} />
         {fileType == "glb" ? (
-          <LoadedGltf file={props.file} />
+          <LoadedGltf />
           ) : (
-            <Loaded3Dm file={props.file} />
+            <Loaded3Dm />
             )}
       <Thumbnail/>
       </Canvas>
