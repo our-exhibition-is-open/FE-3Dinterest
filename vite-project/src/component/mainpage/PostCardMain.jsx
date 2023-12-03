@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import { ModalBackground, PostModal } from "./modal/PostModal";
+import { ModalBackground, PostModal } from "./modalComponent/PostModal";
 import { LikeComponent } from "../common/LikeComponent";
 import { postLikeApi } from "../../api/postLikeApi";
 

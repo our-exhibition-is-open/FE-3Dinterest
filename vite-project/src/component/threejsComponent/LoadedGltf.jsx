@@ -10,15 +10,12 @@ export function LoadedGltf() {
   const fileReader = new FileReader();
 
   fileReader.onload = (event) => {
-    console.log(1);
     const contents = event.target.result;
     const loader = new GLTFLoader();
     loader.parse(contents, "", (gltf) => {
-      console.log(2);
       const object = gltf.scene;
       object.castShadow = true;
       object.receiveShadow = true;
-      console.log(object);
       scene.add(object);
     });
   };

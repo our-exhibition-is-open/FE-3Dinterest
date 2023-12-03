@@ -5,7 +5,7 @@ import { getPostListApi } from "../../../api/getPostListApi";
 
 import { PostModel } from "../../../model";
 import { ContributePost } from "./ContributePost";
-import { Scene } from "../../threejs/Scene";
+import { Scene } from "../../threejsComponent/Scene";
 import { getContributeListApi } from "../../../api/getContributeListApi";
 import { LikeComponent } from "../../common/LikeComponent";
 
@@ -54,6 +54,7 @@ const ModalPostContainer = styled.div`
   height: 41.875rem;
   width: 40.745rem;
 `;
+
 const PostCanvas = styled.div`
   z-index: 1002;
   width: 39.375rem;
@@ -82,12 +83,12 @@ const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-`
+`;
 
 const LikeContainer = styled.div`
   margin-top: 2%;
   margin-left: 17%;
-`
+`;
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -131,7 +132,6 @@ const ContributeContainer = styled.div`
 export function PostModal(props) {
   const [postState, setPostState] = useState(props.post);
   const [dataList, setDataList] = useState([]);
-  
 
   useEffect(() => {
     getContributeListApi(postState.postId).then((response) => {
@@ -156,8 +156,10 @@ export function PostModal(props) {
           <RowContainer>
             <Title>{postState.title}</Title>
             <LikeContainer>
-              <LikeComponent isLogged={props.isLogged}
-            postId={postState.postId}/>
+              <LikeComponent
+                isLogged={props.isLogged}
+                postId={postState.postId}
+              />
             </LikeContainer>
           </RowContainer>
           <InfoContainer>

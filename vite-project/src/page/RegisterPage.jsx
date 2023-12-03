@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
 
 import { InputComponent } from "../component/common/InputComponent";
-import { checkingSubmitValue, checkingValue} from "../util/register/checkingValue";
-import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
+import { checkingSubmitValue, checkingValue} from "../util/registerUtil/checkingValue";
+import {BackgroundContainer, MainBackground } from "../component/threejsComponent/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
 import LogoComponent from "../component/common/LogoComponent";
 

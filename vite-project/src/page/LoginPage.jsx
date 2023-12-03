@@ -6,11 +6,11 @@ import { InputComponent } from "../component/common/InputComponent";
 import {
   checkingSubmitValue,
   checkingValue,
-} from "../util/register/checkingValue";
+} from "../util/registerUtil/checkingValue";
 import {
   BackgroundContainer,
   MainBackground,
-} from "../component/threejs/MainBackground";
+} from "../component/threejsComponent/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
 import LogoComponent from "../component/common/LogoComponent";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { checkingSubmitValue, checkingValue } from "../../util/register/checkingValue";
+import { checkingSubmitValue, checkingValue } from "../../util/registerUtil/checkingValue";
 
 const Message = styled.div`
     color: #000000;

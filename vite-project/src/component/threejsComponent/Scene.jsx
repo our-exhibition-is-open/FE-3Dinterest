@@ -5,7 +5,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Rhino3dmLoader } from "three/examples/jsm/loaders/3DMLoader";
 import { LoadedGltf } from "./LoadedGltf";
 import { Loaded3Dm } from "./Loaded3Dm";
-import { fileNameParser } from "../../util/upload/fileNameParser";
+import { fileNameParser } from "../../util/uploadUtil/fileNameParser";
 import { Thumbnail } from "./thumbnail";
 import { useUploadStore } from "../../model";
 

@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 import { PostModel } from "../../model";
 import { PostCardMain } from "./PostCardMain";
 import { getPostListApi } from "../../api/getPostListApi";
-import { ModalBackground, PostModal } from "./modal/PostModal";
+import { ModalBackground, PostModal } from "./modalComponent/PostModal";
 
 const Container = styled.div`
   display: flex;

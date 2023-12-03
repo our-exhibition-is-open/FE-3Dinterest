@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
-import { NavigationBar } from "../component/nav/NavigationBar.jsx";
+import { NavigationBar } from "../component/navComponent/NavigationBar.jsx";
 import { PostList } from "../component/mainpage/PostList.jsx";
 import { WelcomeHeader } from "../component/mainpage/WelcomeComponent";
 import { getPostListApi } from "../api/getPostListApi.js";
