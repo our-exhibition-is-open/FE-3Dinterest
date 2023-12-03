@@ -30,8 +30,8 @@ export function UploadSubmitComponent() {
 
   function handleClick() {
     if (uploadState == true) {
-      const uploadTime = getCurrentTime();
-      postUploadApi(file, thumbnailImage, title, userId, uploadTime)
+      postUploadApi(file, thumbnailImage, title, userId)
+      //FIXME: uplaodTime 제외하기.
         .then((response) => {
           if (response.status == 200) {
             alert("Success!");
