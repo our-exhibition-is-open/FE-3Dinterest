@@ -5,12 +5,14 @@ export const useUploadStore = create((set) => ({
   thumbnailImage: "",
   title: "",
   userId: sessionStorage.getItem("userId"),
+  uploadState: false,
   setFile: (file) => set({ file: file }),
   setThumbnailImage: (image) => set({ thumbnailImage: image }),
   setTitle: (title) => set({ title: title }),
   setUserId: (userId) => set({ userId: userId }),
+  setUploadState: (uploadState) => set({uploadState: uploadState}),
   resetUploadStore: () =>
-    set({ file: null, thumbnailImage: "", title: "", userId: "" }),
+    set({ file: null, thumbnailImage: "", title: "", userId: "", uploadState: false }),
 }));
 
 export const useGageLevelStore = create((set) => ({
