@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useUploadStore } from "../../model";
 
@@ -19,18 +19,22 @@ const GageBar = styled.div`
 `;
 
 export function GageComponent() {
-    const [gageLevel, setGageLevel] = useState(1);
-    const {file, title} = useUploadStore();
+  const [gageLevel, setGageLevel] = useState(1);
+  const { file, title, setUploadState, uploadState } = useUploadStore();
 
-    useEffect(() => {
-        console.log(file)
-        if(file != null ^  title != "")
-          setGageLevel(4);
-        else if(file != null && title != "")
-          setGageLevel(7);
-        else
-        setGageLevel(1);
-      })
+  useEffect(() => {
+    if (file != null && title != "") {
+      setGageLevel(7);
+      setUploadState(true);
+    } else if ((file != null) ^ (title != "")) {
+      setGageLevel(4);
+      setUploadState(false);
+    } else {
+      setGageLevel(1);
+      setUploadState(false);
+    }
+  }, [file, title]);
+  
   return (
     <>
       <GageBar gagelevel={gageLevel} />
