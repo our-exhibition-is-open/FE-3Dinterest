@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useGageLevelStore, useUploadStore } from "../../model";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 7px; 
+  gap: 7px;
 `;
 
 const Title = styled.div`
@@ -30,13 +31,22 @@ export const InputStyled = styled.input`
 `;
 
 export function UploadInputComponent() {
+  const { setTitle, title, file } = useUploadStore();
+
+  function handleChange(e) {
+    setTitle(e.target.value);
+  }
+
+  //FIXME: 그냥 경우의 수가 적으니 귀찮으니깐 경우의 수 별로 상태를 string으로 정의하자. 아니면 파일이 먼저 들어오지 않으면 인풋은 못넣게 하자.
   return (
     <>
       <Container>
         <Title>Title</Title>
-        <InputStyled placeholder="Add a title" />
+        <InputStyled
+          placeholder="Add a title"
+          onChange={(e) => handleChange(e)}
+        />
       </Container>
     </>
   );
 }
-
