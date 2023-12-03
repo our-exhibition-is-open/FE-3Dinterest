@@ -1,9 +1,10 @@
-import React, { useRef, useState, Suspense } from "react";
+import React, { useRef, useState, Suspense, useEffect } from "react";
 import styled from "styled-components";
 import { Scene } from "../threejs/Scene";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { useThree } from "@react-three/fiber";
-import { fileNameParser } from "../../util/upload/fileNameParser";
+import { useGageLevelStore, useUploadStore } from "../../model/store";
+
+
+
 
 const FileContainer = styled.div`
   display: flex;
@@ -38,20 +39,18 @@ const Info = styled.div`
   letter-spacing: 0.02625rem;
 `;
 
-export function FileComponent({changeGageLevel, currentGageLevel}) {
-  const [loadedFile, setLoadedFile] = useState(null);
-  
+export function FileComponent() {
+  const {setFile, file, title} = useUploadStore();
 
   function handleChange(e) {
     const file = e.target.files[0];
-    setLoadedFile(file);
-    changeGageLevel(currentGageLevel + 3);
+    setFile(file);
   }
 
   return (
     <>
       <FileContainer>
-        {loadedFile == null ? (
+        {file == null ? (
           <>
             <PostCanvas>
               <input
@@ -79,7 +78,7 @@ export function FileComponent({changeGageLevel, currentGageLevel}) {
           <>
             <PostCanvas>
               <Suspense>
-                <Scene file={loadedFile}/>
+                <Scene/>
               </Suspense>
             </PostCanvas>
           </>
