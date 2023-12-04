@@ -1,8 +1,8 @@
 export function checkingUser(enteredId, enteredPw) {
-    const idFlag = false;
-    const pwFlag = false;
     
     const storedUsers = JSON.parse(localStorage.getItem("storedUserData"));
+    console.log(storedUsers);
+    console.log(enteredId + " " + enteredPw)
     const foundUser = storedUsers.find(user => user.id === enteredId);
     console.log("foundUser : " + foundUser);
     if(foundUser && foundUser.pw === enteredPw)
