@@ -11,16 +11,20 @@ export const handlers = [
     return HttpResponse.json(posts);
   }),
 
-  http.post("/api/posts/:postId/like", ({ params }) => {
-    console.log("msw : " + params.postId);
+  http.post("/api/posts/:postId/like", async ({ request, params }) => {
+    const { postId } = params;
+    const { value, value2 } = await request.json();
+
     return new HttpResponse(null, { status: 200 });
   }),
-  http.post("/login", ({ params }) => {
-    console.log("msw : " + params.userId + "pw : " + params.password);
-    const enteredId = params.userId;
-    const enteredPw = params.password;
-    if (checkingUser(enteredId, enteredPw))
+  http.post("/api/login", async ({ request }) => {
+    const requestBody = await request.json();
+    console.log(requestBody);
+    if (checkingUser(requestBody.id, requestBody.pw))
       return new HttpResponse(null, { status: 200 });
-    else return new HttpResponse(null, { status: 400 });
+    else {
+      console.log("testestset");
+      return new HttpResponse(null, { status: 400 });
+    }
   }),
 ];
