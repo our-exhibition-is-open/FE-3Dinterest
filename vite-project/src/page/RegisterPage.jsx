@@ -7,6 +7,7 @@ import { checkingSubmitValue, checkingValue} from "../util/registerUtil/checking
 import {BackgroundContainer, MainBackground } from "../component/threejsComponent/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
 import LogoComponent from "../component/common/LogoComponent";
+import { registerUser } from "../util/registerUtil/registerUser";
 
 const CommonText = styled.div`
     z-index: 1;
@@ -73,7 +74,15 @@ export function RegisterPage() {
     }
 
     function handlingSubmit() {
-        navigate('/login');
+        if(registerUser(value.id, value.pw))
+        {
+            alert("회원가입 성공 ! 로그인을 해주세요.");
+            navigate('/login');
+        }
+        else
+        {
+            alert("중복된 아이디입니다.");
+        }
     }
 
     return (
