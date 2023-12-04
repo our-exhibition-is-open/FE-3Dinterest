@@ -13,6 +13,7 @@ import {
 } from "../component/threejsComponent/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
 import LogoComponent from "../component/common/LogoComponent";
+import { getLoginApi } from "../api/getLoginApi";
 
 const CommonText = styled.div`
   z-index: 1;
@@ -86,9 +87,22 @@ export function LoginPage({ setLoginSuccess }) {
   }
 
   function handlingSubmit() {
-    sessionStorage.setItem("userId", value.id);
-    sessionStorage.setItem("isLoggedIn", true);
-    navigate("/");
+    const enteredId = value.id;
+    const enteredPw = value.pw;
+    getLoginApi(enteredId, enteredPw).then((response) => {
+      if(response.status == 200)
+      {
+        alert("logined !!! ")
+        sessionStorage.setItem("userId", enteredId);
+        navigate("/");
+      }
+      else if(response.status == 400)
+      {
+        alert("비밀번호 혹은 아이디를 다시 확인해주세요");
+      }
+    }).catch((e) => {
+      console.log(e);
+    })
   }
 
   
