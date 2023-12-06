@@ -1,17 +1,16 @@
 import React, { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { CameraControls, SpotLight } from "@react-three/drei";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Rhino3dmLoader } from "three/examples/jsm/loaders/3DMLoader";
 import { LoadedGltf } from "./LoadedGltf";
 import { Loaded3Dm } from "./Loaded3Dm";
 import { fileNameParser } from "../../util/uploadUtil/fileNameParser";
 import { Thumbnail } from "./thumbnail";
-import { useUploadStore } from "../../model";
+import { useLoadedModel, useUploadStore } from "../../model";
 
-export function Scene(props) {
-  const {file} = useUploadStore();
-  const fileType = fileNameParser(file.name);
+export function UploadScene(props) {
+  const {type, file} = useLoadedModel();
+  console.log(file);
+  console.log(type);
   const cameraControlRef = useRef(CameraControls, null);
 
   
@@ -21,12 +20,12 @@ export function Scene(props) {
         camera={{ position: [23, 10, 25] }}
         shadows
         style={{
-          borderRadius: 25,
+          borderRadius: "26px",
           borderStyle: "solid",
           borderWidth: "2px",
           borderColor: "#9f9f9f",
         }}
-        gl={{ preserveDrawingBuffer: true }}
+        gl={{ preserveDrawingBuffer: true}}
         id="uploadScene"
       >
         <color attach="background" args={["white"]} />
@@ -50,7 +49,7 @@ export function Scene(props) {
           castShadow={true}
           />
         <gridHelper args={[100, 100]} />
-        {fileType == "glb" ? (
+        {type == "glb" || type =="gltf" ? (
           <LoadedGltf />
           ) : (
             <Loaded3Dm />
