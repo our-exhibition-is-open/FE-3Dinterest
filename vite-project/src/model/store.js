@@ -15,9 +15,12 @@ export const useUploadStore = create((set) => ({
     set({ file: null, thumbnailImage: "", title: "", userId: "", uploadState: false }),
 }));
 
-export const useGageLevelStore = create((set) => ({
-  gageLevel: "Nothing", //upload페이지에서 단계별 게이지 수의 상태를 나타낸다. "Nothing", "FirstStep" : file upload 인풋 활성화, "LastStep" : Input upload 버튼 활성화
-  setFileGage: () => set({ gageLevel: "FirstStep" }),
-  setInputGage: () => set({ gageLevel: "LastStep" }),
-  resetGageStore: () => set({ gageLevel: "Nothing"}),
-}));
+export const useLoadedModel = create((set) => ({
+  fileUrl: "",
+  file: null,
+  type: "",
+  setFileName: (fileUrl) => set({fileUrl: fileUrl}),
+  setFile: (file) => set({file: file}),
+  setType: (fileType) => set({type: fileType}),
+  resetLoadedModel: () => set({fileUrl: "", file: null, type: ""})
+}))
