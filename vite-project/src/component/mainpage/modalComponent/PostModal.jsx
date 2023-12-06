@@ -5,7 +5,7 @@ import { getPostListApi } from "../../../api/getPostListApi";
 
 import { PostModel } from "../../../model";
 import { ContributePost } from "./ContributePost";
-import { Scene } from "../../threejsComponent/Scene";
+import { PostScene } from "../../threejsComponent/PostScene";
 import { getContributeListApi } from "../../../api/getContributeListApi";
 import { LikeComponent } from "../../common/LikeComponent";
 
@@ -130,11 +130,12 @@ const ContributeContainer = styled.div`
 `;
 
 export function PostModal(props) {
-  const [postState, setPostState] = useState(props.post);
+  const [postState, setPostState] = useState(props.post);//현재 모달이 띄워야할 post객체를 상태로 저장한다.
   const [dataList, setDataList] = useState([]);
 
   useEffect(() => {
     getContributeListApi(postState.postId).then((response) => {
+      //FIXME: 데이터 형식 맞추기 
       setDataList(response);
     });
     console.log("request" + postState.postId);
@@ -150,7 +151,7 @@ export function PostModal(props) {
         <ModalPostContainer>
           <PostCanvas>
             <Suspense>
-              <Scene gltfUrl={postState.modelUrl} />
+              <PostScene gltfUrl={postState.modelUrl} />
             </Suspense>
           </PostCanvas>
           <RowContainer>
@@ -164,13 +165,13 @@ export function PostModal(props) {
           </RowContainer>
           <InfoContainer>
             <UploadTimeWrapper>
-              upload time: {postState.uploadTime}
+              upload time: {postState.uploadData}
             </UploadTimeWrapper>
-            <UserWrapper>User: {postState.user}</UserWrapper>
+            <UserWrapper>User: {postState.userId}</UserWrapper>
           </InfoContainer>
         </ModalPostContainer>
         <ContributeContainer>
-          {dataList &&
+          {dataList ?
             dataList.map((data, index) => (
               <div
                 onClick={() => {
@@ -180,7 +181,7 @@ export function PostModal(props) {
               >
                 <ContributePost post={new PostModel(data)} />
               </div>
-            ))}
+            )) : <div>2차 창작물이 없습니다.</div>}
         </ContributeContainer>
       </ModalContainer>
     </>

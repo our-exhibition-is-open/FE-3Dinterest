@@ -21,8 +21,7 @@ export function PostList(props) {
 
   useEffect(() => {
     getPostListApi().then((response) => {
-      setDataList(response);
-      console.log(response[1]);
+      setDataList(JSON.parse(response));
     });
   }, []);
 
