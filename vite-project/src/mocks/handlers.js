@@ -3,12 +3,13 @@ import posts from "./dummyPost.json";
 import { checkingUser } from "../util/LoginUtil/checkingUser";
 
 export const handlers = [
-  http.get("/", () => {
-    return HttpResponse.json(posts);
+  http.get("/postlist", () => {
+    return HttpResponse.json(JSON.stringify(posts));
   }),
 
-  http.get("/contribute", () => {
-    return HttpResponse.json(posts);
+  http.get("/contribute/:postId", ({params}) => {
+    console.log(params);
+    return HttpResponse.json(JSON.stringify(posts));
   }),
 
   http.post("/api/posts/:postId/like", async ({ request, params }) => {
