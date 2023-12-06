@@ -6,6 +6,7 @@ import { LoginPage } from './page/LoginPage.jsx';
 import { RegisterPage } from './page/RegisterPage.jsx';
 import UploadPage from './page/UploadPage.jsx';
 import ContributePage from './page/ContributePage.jsx';
+import { TestPage } from './test/TestPage.jsx';
 
 function Router() {
     return (
@@ -16,6 +17,7 @@ function Router() {
                 <Route path="/register" element={<RegisterPage />} />
                 <Route path="/upload" element={<UploadPage />} />
                 <Route path="/contribute" element={<ContributePage />} />
+                <Route path="/testpage" element={<TestPage/>} />
             </Routes>
         </BrowserRouter>
     );
