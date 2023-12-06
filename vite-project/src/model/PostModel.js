@@ -1,15 +1,14 @@
-export class PostModel {
-  constructor({ imageUrl, modelUrl, title, user, postId, uploadTime }) {
-    this.imageUrl = imageUrl ?? "";
-    this.modelUrl = modelUrl ?? null;
-    this.title = title ?? "제목이 존재하지 않습니다.";
-    this.user = user ?? "유저가 존재하지 않습니다.";
-    this.postId = postId ?? null;
+import { fileNameParser } from "../util/uploadUtil/fileNameParser";
 
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const day = now.getDate();
-    this.uploadTime = uploadTime ?? year + "-" + month + "-" + day;
+export class PostModel {
+  constructor({postId, userId, title, uploadDate, imageUrl, modelUrl}) {
+    this.postId = postId;
+    this.userId = userId;
+    this.title = title;
+    this.uploadDate =uploadDate;
+    this.imageUrl = `https://s3.ap-northeast-2.amazonaws.com/open-source-development-project/${imageUrl}`
+    this.modelUrl = `https://s3.ap-northeast-2.amazonaws.com/open-source-development-project/${modelUrl}`
+    this.type = fileNameParser(modelUrl);
   }
 }
+//title, userID, postId, imageUrl, modelUrl => 생성시 바로 만들기 
