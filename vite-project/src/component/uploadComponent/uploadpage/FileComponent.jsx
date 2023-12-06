@@ -1,7 +1,8 @@
 import React, { useRef, useState, Suspense, useEffect } from "react";
 import styled from "styled-components";
-import { Scene } from "../../threejsComponent/Scene";
-import { useGageLevelStore, useUploadStore } from "../../../model/store";
+import { useLoadedModel} from "../../../model/store";
+import { UploadScene } from "../../threejsComponent/UploadScene";
+import { fileNameParser } from "../../../util/uploadUtil/fileNameParser";
 
 
 
@@ -40,11 +41,12 @@ const Info = styled.div`
 `;
 
 export function FileComponent() {
-  const {setFile, file, title} = useUploadStore();
+  const {file, setFile, setType} = useLoadedModel();
 
   function handleChange(e) {
-    const file = e.target.files[0];
-    setFile(file);
+    setFile(e.target.files[0]);
+    console.log(e.target.files[0]);
+    setType(fileNameParser(e.target.files[0].name));
   }
 
   return (
@@ -78,7 +80,7 @@ export function FileComponent() {
           <>
             <PostCanvas>
               <Suspense>
-                <Scene/>
+                <UploadScene/>
               </Suspense>
             </PostCanvas>
           </>

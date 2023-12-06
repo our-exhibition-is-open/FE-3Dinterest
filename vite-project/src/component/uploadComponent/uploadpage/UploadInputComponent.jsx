@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useGageLevelStore, useUploadStore } from "../../../model";
+import {useUploadStore } from "../../../model";
 
 const Container = styled.div`
   display: flex;
