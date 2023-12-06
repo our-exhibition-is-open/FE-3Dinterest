@@ -1,10 +1,12 @@
 import React, { useRef, useState, useEffect, Suspense } from "react";
 import { useLoader, useThree } from "@react-three/fiber";
 import { Rhino3dmLoader } from "three/examples/jsm/loaders/3DMLoader";
-import { useUploadStore } from "../../model";
+import { useLoadedModel, useUploadStore } from "../../model";
+import { useNavigate } from "react-router-dom";
 
 export function Loaded3Dm() {
-  const { file } = useUploadStore();
+  const navigator = useNavigate();
+  const {file} = useLoadedModel();
   const { scene } = useThree();
   const fileReader = new FileReader();
 
@@ -12,13 +14,19 @@ export function Loaded3Dm() {
     const contents = event.target.result;
     const loader = new Rhino3dmLoader();
     loader.setLibraryPath("https://unpkg.com/rhino3dm@8.0.0-beta2/");
-    loader.parse(contents, (object) => {
-      object.castShadow = true;
-      object.receiveShadow = true;
-      object.rotateX(-1.5);
-      object.scale.set(0.3, 0.3, 0.3);
-      scene.add(object);
-    });
+    try {
+      loader.parse(contents, (object) => {
+        object.castShadow = true;
+        object.receiveShadow = true;
+        object.rotateX(-1.5);
+        object.scale.set(0.3, 0.3, 0.3);
+        scene.add(object);
+      });
+    } catch (e) {
+      console.error("3dm load error : ", e);
+      alert("error on loading model. try again")
+      navigator('/');
+    }
   };
   fileReader.readAsArrayBuffer(file);
 }
