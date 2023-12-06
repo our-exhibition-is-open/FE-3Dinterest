@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useUploadStore } from "../../model";
+import { useLoadedModel, useUploadStore } from "../../model";
 
 const GageBar = styled.div`
   z-index: 11;
@@ -20,7 +20,8 @@ const GageBar = styled.div`
 
 export function GageComponent() {
   const [gageLevel, setGageLevel] = useState(1);
-  const { file, title, setUploadState, uploadState } = useUploadStore();
+  const { title, setUploadState, uploadState } = useUploadStore();
+  const {file} = useLoadedModel();
 
   useEffect(() => {
     if (file != null && title != "") {
