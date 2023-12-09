@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, Suspense } from "react";
+import React, { useRef, useState, useEffect, Suspense, useMemo } from "react";
 import { useLoader, useThree } from "@react-three/fiber";
 import { Rhino3dmLoader } from "three/examples/jsm/loaders/3DMLoader";
 import { useLoadedModel, useUploadStore } from "../../model";
@@ -9,6 +9,9 @@ export function Loaded3Dm() {
   const { file } = useLoadedModel();
   const { scene } = useThree();
   const fileReader = new FileReader();
+
+  
+  
   useEffect(() => {
     fileReader.onload = (event) => {
       const contents = event.target.result;
@@ -29,6 +32,6 @@ export function Loaded3Dm() {
         navigator("/");
       }
     };
-    fileReader.readAsArrayBuffer(file);
   }, [file]);
+  fileReader.readAsArrayBuffer(file);
 }
