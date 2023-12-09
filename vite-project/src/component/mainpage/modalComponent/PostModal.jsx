@@ -12,6 +12,7 @@ import { getContributeListApi } from "../../../api/getContributeListApi";
 import { LikeComponent } from "../../common/LikeComponent";
 import { getModelFileApi } from "../../../test/getModelFileApi";
 import { LoadingComponent } from "../../common/LoadingComponent";
+import { postDownloadApi } from "../../../api/postDownloadApi";
 
 export const ModalBackground = styled.div`
   display: flex;
@@ -155,7 +156,8 @@ const DownloadContainer = styled.div`
 export function PostModal(props) {
   const [postState, setPostState] = useState(props.post); //현재 모달이 띄워야할 post객체를 상태로 저장한다.
   const [contributePostList, setContributePostList] = useState(null);
-  const { setFileUrl, setType, setFile, file, resetLoadedModel } = useLoadedModel();
+  const { setFileUrl, setType, setFile, file, resetLoadedModel } =
+    useLoadedModel();
 
   useEffect(() => {
     setType(postState.type);
@@ -165,7 +167,7 @@ export function PostModal(props) {
       console.log("called");
       setFile(response.data);
     }); //postState변경시마다 모델의 url을 가지고 파일을 가져옴. blob형식으로 전역변수에 저장한다.
-    
+
     getContributeListApi(postState.postId)
     .then((response) => {
       //FIXME: 데이터 형식 맞추기
@@ -190,7 +192,7 @@ export function PostModal(props) {
 
     return () => {
       resetLoadedModel();
-    }
+    };
   }, [postState]);
 
   function handlePostClick(post) {
@@ -198,10 +200,12 @@ export function PostModal(props) {
   }
 
   function handleDownload() {
-    
+    postDownloadApi(sessionStorage.getItem("userId"), postState.postId)
+    .catch(
+      (e) => console.error("download api error !!", e)
+    );
   }
 
-  
   return (
     <>
       <ModalContainer>
@@ -221,7 +225,7 @@ export function PostModal(props) {
           <RowContainer>
             <Title>{postState.title}</Title>
             <DownloadContainer>
-              <a href={postState.modelUrl}>
+              <a href={postState.modelUrl} onClick={handleDownload}>
                 <img
                   src="/src/resource/image/icon_download.png"
                   style={{ width: "28.31px", height: "26.8px" }}
