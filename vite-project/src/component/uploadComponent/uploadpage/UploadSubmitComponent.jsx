@@ -25,10 +25,10 @@ const SubmitButton = styled.button`
 `;
 
 export function UploadSubmitComponent() {
-  const { uploadState, file, thumbnailImage, title, userId } = useUploadStore();
   const navigator = useNavigate();
-
+  
   function handleClick() {
+    const { uploadState, file, thumbnailImage, title, userId } = useUploadStore();
     if (uploadState == true) {
       postUploadApi(file, thumbnailImage, title, userId)
       //FIXME: uplaodTime 제외하기.

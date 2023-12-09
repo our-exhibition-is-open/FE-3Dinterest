@@ -11,12 +11,13 @@ export function LoadedGltf() {
   const { scene, camera } = useThree();
   const fileReader = new FileReader();
   console.log(file);
-
+useEffect(() => {
   fileReader.onload = (event) => {
     const contents = event.target.result;
     const loader = new GLTFLoader();
     try {
       loader.parse(contents, "", (gltf) => {
+        console.log("parsing gltf file");
         const object = gltf.scene;
         object.castShadow = true;
         object.receiveShadow = true;
@@ -31,4 +32,6 @@ export function LoadedGltf() {
     }
   };
   fileReader.readAsArrayBuffer(file);
+}, [file]);
+  
 }

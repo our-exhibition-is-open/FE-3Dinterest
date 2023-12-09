@@ -1,11 +1,8 @@
 import React, { useRef, useState, Suspense, useEffect } from "react";
 import styled from "styled-components";
-import { useLoadedModel} from "../../../model/store";
+import { useLoadedModel } from "../../../model/store";
 import { UploadScene } from "../../threejsComponent/UploadScene";
 import { fileNameParser } from "../../../util/uploadUtil/fileNameParser";
-
-
-
 
 const FileContainer = styled.div`
   display: flex;
@@ -41,18 +38,33 @@ const Info = styled.div`
 `;
 
 export function FileComponent() {
-  const {file, setFile, setType} = useLoadedModel();
-
+  const { setFile, setType } = useLoadedModel();
+  const [tempFile, setTempFile] = useState();
+  const [fileLoad, setFileLoad] = useState(false);
+  // console.log(file);
+  console.log(fileLoad);
+  // console.log("loaded file")
   function handleChange(e) {
+    // setTempFile(e.target.files[0]);
     setFile(e.target.files[0]);
     console.log(e.target.files[0]);
     setType(fileNameParser(e.target.files[0].name));
+
+    setFileLoad(true);
   }
 
   return (
     <>
       <FileContainer>
-        {file == null ? (
+        {fileLoad ? (
+          <>
+            <PostCanvas>
+              <Suspense>
+                <UploadScene />
+              </Suspense>
+            </PostCanvas>
+          </>
+        ) : (
           <>
             <PostCanvas>
               <input
@@ -74,14 +86,6 @@ export function FileComponent() {
               <Info>
                 We recommend using .glb format or .3dm format less than 100MB.
               </Info>
-            </PostCanvas>
-          </>
-        ) : (
-          <>
-            <PostCanvas>
-              <Suspense>
-                <UploadScene/>
-              </Suspense>
             </PostCanvas>
           </>
         )}

@@ -8,8 +8,8 @@ import { Thumbnail } from "./thumbnail";
 import { useLoadedModel, useUploadStore } from "../../model";
 
 export function UploadScene(props) {
-  const {type, file} = useLoadedModel();
-  console.log(file);
+  const {type} = useLoadedModel();
+  // console.log(file);
   console.log(type);
   const cameraControlRef = useRef(CameraControls, null);
 
