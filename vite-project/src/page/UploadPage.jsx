@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FileComponent } from "../component/uploadComponent/uploadpage/FileComponent";
 import { UploadComponent } from "../component/uploadComponent/uploadpage/UploadComponent";
-import { useGageLevelStore, useUploadStore } from "../model/store";
+import { useUploadStore } from "../model/store";
 import { GageComponent } from "../component/common/GageComponent";
 
 const UploadContainer = styled.div`

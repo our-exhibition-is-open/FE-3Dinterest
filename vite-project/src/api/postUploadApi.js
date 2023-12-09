@@ -1,3 +1,4 @@
+// import { makeDummyPost } from "../mocks/makeDummyPost";
 import axiosInstance from "./instance";
 
 async function postUploadApi(file, image, title, userId, uploadTime) {
@@ -23,6 +24,7 @@ async function postUploadApi(file, image, title, userId, uploadTime) {
   for (let key of formData.keys()) {
 	console.log(key, ":", formData.get(key));
 }
+  // makeDummyPost(file, image, title, userId, uploadTime);
   const response = await axiosInstance.post(`/upload`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",

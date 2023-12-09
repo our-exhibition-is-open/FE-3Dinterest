@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export function LoadedGltf() {
   const navigator = useNavigate();
   const {file} = useLoadedModel();
-  const { scene } = useThree();
+  const { scene, camera } = useThree();
   const fileReader = new FileReader();
   console.log(file);
 
@@ -20,7 +20,9 @@ export function LoadedGltf() {
         const object = gltf.scene;
         object.castShadow = true;
         object.receiveShadow = true;
+        object.scale.set(1,1,1);
         scene.add(object);
+        camera.lookAt(object);
       });
     } catch (e) {
       console.error("gltf load error : ", e);

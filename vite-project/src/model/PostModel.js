@@ -2,7 +2,7 @@ import { fileNameParser } from "../util/uploadUtil/fileNameParser";
 
 export class PostModel {
   constructor({postId, userId, title, uploadDate, imageUrl, modelUrl}) {
-    this.postId = postId;
+    this.postId = parseInt(postId);
     this.userId = userId;
     this.title = title;
     this.uploadDate = uploadDate;

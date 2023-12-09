@@ -32,6 +32,17 @@ export function UploadScene(props) {
         <CameraControls ref={cameraControlRef} />
         <directionalLight intensity={0.2} position={[0, 20, 30]} />
         <directionalLight intensity={0.2} position={[0, 20, -30]} />
+        {/* <directionalLight
+        intensity={1}
+        castShadow={true}
+        shadow-bias={-0.0002}
+        shadow-mapSize={[2048, 2048]}
+        position={[85.0, 80.0, 70.0]}
+        shadow-camera-left={-30}
+        shadow-camera-right={30}
+        shadow-camera-top={30}
+        shadow-camera-bottom={-30}
+      /> */}
         <SpotLight
           intensity={1000}
           penumbra={1}
