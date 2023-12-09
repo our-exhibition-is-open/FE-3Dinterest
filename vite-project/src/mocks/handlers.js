@@ -28,4 +28,9 @@ export const handlers = [
       return new HttpResponse(null, { status: 400 });
     }
   }),
+  http.post("/download", async ({request}) => {
+    const {post_id, user_id} = await request.json();
+    console.log({post_id, user_id});
+    return new HttpResponse(null, {status: 200});
+  })
 ];
