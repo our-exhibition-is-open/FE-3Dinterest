@@ -6,6 +6,7 @@ import { getContributeListApi } from "../../../api/getContributeListApi";
 import { DownloadHistoryPostCard } from "./DownloadHistoryPostCard";
 import { getDownloadHistoryApi } from "../../../api/getDownloadHistory";
 import { useNavigate } from "react-router-dom";
+import { isEmptyString } from "../../../util/checkingEmptyString";
 
 const DetailBar = styled.div`
   z-index: 1020;
@@ -52,8 +53,8 @@ export function ContributeListComponent() {
     console.log(sessionStorage.getItem("userId"));
     getDownloadHistoryApi(sessionStorage.getItem("userId"))
       .then((response) => {
-        console.log()
-        if (response.data == "[]") {
+        console.log(response);
+        if (response == '[]' || isEmptyString(response)) {
           alert("다운로드 기록이 존재하지 않아 컨트리뷰트 할 수 없습니다.");
           navigator("/");
         } else {
@@ -79,9 +80,6 @@ export function ContributeListComponent() {
     console.log(postList);
   }, []);
 
-  // function handleClick() {}
-  //FIXME: 다운로드 히스토리 게시글을 선택하면 테두리가 빨갛게,
-  // 해당 포스트 id는 업로드 버튼을 누르면 어떻게 전송할지(전역? 로컬상태? props끌어올리기?) 고민하기
   return (
     <>
       <Container>
