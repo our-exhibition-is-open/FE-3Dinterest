@@ -17,7 +17,7 @@ export function UploadScene(props) {
   return (
     <>
       <Canvas
-        camera={{ position: [23, 10, 25] }}
+        camera={{ position: [23, 10, 25], far: 10000}}
         shadows
         style={{
           borderRadius: "26px",
