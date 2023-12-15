@@ -1,7 +1,6 @@
 import { create } from "zustand";
 
 export const useUploadStore = create((set) => ({
-  file: null,
   thumbnailImage: "",
   title: "",
   userId: sessionStorage.getItem("userId"),
@@ -12,7 +11,7 @@ export const useUploadStore = create((set) => ({
   setUserId: (userId) => set({ userId: userId }),
   setUploadState: (uploadState) => set({uploadState: uploadState}),
   resetUploadStore: () =>
-    set({ file: null, thumbnailImage: "", title: "", userId: "", uploadState: false }),
+    set({ thumbnailImage: "", title: "", userId: "", uploadState: false }),
 }));
 
 export const useLoadedModel = create((set) => ({
@@ -23,4 +22,9 @@ export const useLoadedModel = create((set) => ({
   setFile: (file) => set({file: file}),
   setType: (fileType) => set({type: fileType}),
   resetLoadedModel: () => set({fileUrl: "", file: null, type: ""})
+}))
+
+export const useDownloadHistory = create((set) => ({
+  clickedPost: null,
+  setClickedPost: (postId) => set({clickedPost: postId})
 }))
