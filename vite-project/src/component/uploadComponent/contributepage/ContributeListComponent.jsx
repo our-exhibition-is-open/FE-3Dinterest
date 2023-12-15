@@ -6,6 +6,7 @@ import { getContributeListApi } from "../../../api/getContributeListApi";
 import { DownloadHistoryPostCard } from "./DownloadHistoryPostCard";
 
 const DetailBar = styled.div`
+  z-index: 1020;
   height: 12.5rem;
   width: 3px;
   background-color: #9f9f9f;
@@ -20,12 +21,18 @@ const Container = styled.div`
   justify-content: flex-start;
   
   gap: 0.5rem;
-  width: 102.7%;
-  height: 14.2rem;
-  padding-top: 1rem;
+  width: 101.3%;
+  height: 13rem;
 
-  border-radius: 1rem;
-  border-width: 2px;
+  padding-top: 0.8rem;
+  padding-left: 0.4rem;
+  /* padding-right: 0.4rem; */
+  padding-bottom: 0.8rem;
+  border-left-width:3px;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+
   border-style: solid;
   border-color: #9f9f9f;
 
@@ -34,7 +41,7 @@ const Container = styled.div`
   }
 `;
 
-export function ContributeListComponent({setClickedPost}) {
+export function ContributeListComponent() {
   const [postList, setPostList] = useState([]);;
 
   useEffect(() => {
@@ -43,7 +50,9 @@ export function ContributeListComponent({setClickedPost}) {
       const ResponseDataList = JSON.parse(response).map((data) => new PostModel(data));
       setPostList(
         ResponseDataList.map((data, index) => (
-            <DownloadHistoryPostCard key={index} post={data}/>
+          <div>
+            <DownloadHistoryPostCard key={index} post={data} />
+          </div>
         ))
       );
     })
@@ -58,7 +67,7 @@ export function ContributeListComponent({setClickedPost}) {
   return (
     <>
       <Container>
-      <DetailBar/>
+      {/* <DetailBar/> */}
         {postList}
       </Container>
     </>

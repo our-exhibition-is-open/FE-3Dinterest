@@ -1,40 +1,40 @@
 import React from "react";
 import { useState } from "react";
 import { styled } from 'styled-components';
-
-
-
-const BackgroundContainer = styled.div`
-    background-color: black;
-    width: 13rem;
-    height: 12.5rem;
-    border-radius: 0.9rem;
-`
+import { useDownloadHistory } from "../../../model";
 
 const ImageWrapper = styled.img`
     z-index: 1003;
     cursor: pointer;
     border-radius: 1rem;
-    width: 100%;
-    height: 100%;
+    width: 12rem;
+    height: 12rem;
     object-fit: cover;
+
+    border-width: 2px;
+    border-color: red;
+    border-style: ${(props) => props.focus ? "solid" : "none"};
+    
+    &:hover {
+            opacity:0.8;
+    }
 `
 
 const TitleWrapper = styled.div`
     z-index: 1010;
     cursor: pointer;
     width: 14.75rem;
-    height: 1.1875rem;
+    /* height: 1.1875rem; */
 
     color: #000000;
     font-family: "SF-Pro-Rounded-Regular";
-    font-size: 0.83rem;
+    font-size: 0.9rem;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     line-height: normal;
-    letter-spacing: 0.02844rem;
-    margin-top: 4px;
-    margin-left: 2px;
+    letter-spacing: 0.05844rem;
+
+    margin-top: 4px; 
 `
 
 
@@ -44,32 +44,28 @@ const PostContainer = styled.div`
     /* position: relative; */
     display: flex;
     flex-direction: column;
-    width: 13rem;
-    height: 14.8125rem;
+    /* width: 13rem;
+    height: 13.8125rem; */
     overflow: hidden;
     
     
-    &:hover {
-        ${ImageWrapper}{
-            opacity:0.8;
-        }
-    }
+
 `
 
 
 export function DownloadHistoryPostCard(props) {
     const post = props.post;
-    const [isClicked, setIsClicked] = useState(false);
-    function handleClick() {
-        setIsClicked(!isClicked);
-    }
+    const {clickedPost, setClickedPost} = useDownloadHistory();
 
+    
+    function handleClick() {
+        setClickedPost(post.postId);
+    }
+    
     return (
         <>
-            <PostContainer> 
-                <BackgroundContainer>
-                    <ImageWrapper src={post.imageUrl} />
-                </BackgroundContainer>
+            <PostContainer onClick={handleClick}> 
+                <ImageWrapper src={post.imageUrl} focus={clickedPost == post.postId}/>
                 <TitleWrapper >{post.title}</TitleWrapper>
             </PostContainer>
         </>
