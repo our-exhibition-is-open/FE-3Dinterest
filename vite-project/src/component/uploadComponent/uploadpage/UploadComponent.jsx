@@ -5,6 +5,7 @@ import { UploadInputComponent } from "./UploadInputComponent";
 import { UploadSubmitComponent } from "./UploadSubmitComponent";
 import { useLoadedModel, useUploadStore } from "../../../model";
 import { postUploadApi } from "../../../api/postUploadApi";
+import { UploadModel } from "../../../model/upload.model";
 
 
 const InputContainer = styled.div`
@@ -24,9 +25,7 @@ export function UploadComponent() {
 
   function handleUpload() {
     if (uploadState == true) {
-      console.log("upload");
-      postUploadApi(file, thumbnailImage, title, userId)
-      //FIXME: uplaodTime 제외하기.
+      postUploadApi(file, thumbnailImage, new UploadModel(title, userId))
         .then((response) => {
           if (response.status == 200) {
             alert("Success!");
