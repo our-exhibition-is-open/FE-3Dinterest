@@ -37,10 +37,8 @@ export function ContributeListComponent() {
   const [postList, setPostList] = useState([]);;
 
   useEffect(() => {
-    //FIXME: download_history table api
     getContributeListApi(1)
     .then((response) => {
-      //FIXME: 데이터 형식 맞추기
       const ResponseDataList = JSON.parse(response).map(
         (data) => new PostModel(data)
       );
@@ -54,7 +52,10 @@ export function ContributeListComponent() {
           </div>
         ))
       );
-    });
+    })
+    .catch((e) => {
+      console.error("contributeListApi to component error", e);
+    })
   },[])
   
   // function handleClick() {}
