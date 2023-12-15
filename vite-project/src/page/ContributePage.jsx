@@ -3,9 +3,9 @@ import { NavigationBar } from "../component/navComponent/NavigationBar";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FileComponent } from "../component/uploadComponent/uploadpage/FileComponent";
-import { UploadComponent } from "../component/uploadComponent/contributepage/UploadComponent";
-import { useUploadStore } from "../model/store";
+import { useLoadedModel, useUploadStore } from "../model/store";
 import { GageComponent } from "../component/common/GageComponent";
+import { ContributeComponent } from "../component/uploadComponent/contributepage/ContributeComponent";
 
 const UploadContainer = styled.div`
   display: flex;
@@ -16,12 +16,13 @@ const UploadContainer = styled.div`
 
 export default function ContributePage() {
   const { resetUploadStore, setUserId } = useUploadStore();
+  const {resetLoadedModel} = useLoadedModel();
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(
     sessionStorage.getItem("isLoggedIn") == "true" ? true : false
   );
 
-
+  console.log()
   //1(1:1)~28(100%)
 
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function ContributePage() {
 
     return () => {
       resetUploadStore();
+      resetLoadedModel();
     };
   }, []);
 
@@ -54,7 +56,7 @@ export default function ContributePage() {
       <GageComponent />
       <UploadContainer>
         <FileComponent />
-        <UploadComponent />
+        <ContributeComponent />
       </UploadContainer>
     </>
   );
