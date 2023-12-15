@@ -1,30 +1,21 @@
-// import { makeDummyPost } from "../mocks/makeDummyPost";
 import axiosInstance from "./instance";
 
-async function postUploadApi(file, image, title, userId, uploadTime) {
+export async function postUploadApi(file, image, uploadModel) {
   const formData = new FormData();
-  const metaData = new Object();
-  metaData.user_id = userId;
-  metaData.title = title;
-  metaData.uploadTime = uploadTime;
-  metaData.tagA = false;
-  metaData.tagB = false;
-  metaData.tagC = false;
-  metaData.tagD = false;
-
   formData.append("image", image);
   formData.append("model", file);
+
+  // const meta = new Object();
+  // meta.title = uploadModel.title;
+  // meta.userId = uploadModel.userId;
+  
   formData.append(
     "requestUploadDto",
-    new Blob([JSON.stringify(metaData)], {
+    new Blob([JSON.stringify(uploadModel)], {
       type: "application/json",
     })
   );
-
-  for (let key of formData.keys()) {
-	console.log(key, ":", formData.get(key));
-}
-  // makeDummyPost(file, image, title, userId, uploadTime);
+  console.log(formData.get("requestUploadDto"));
   const response = await axiosInstance.post(`/upload`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -32,6 +23,4 @@ async function postUploadApi(file, image, title, userId, uploadTime) {
   });
   return await response;
 }
-
-export { postUploadApi };
 
