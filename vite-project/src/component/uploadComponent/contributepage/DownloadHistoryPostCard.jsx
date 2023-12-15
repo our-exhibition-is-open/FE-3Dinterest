@@ -13,7 +13,7 @@ const ImageWrapper = styled.img`
 
     border-width: 2px;
     border-color: red;
-    border-style: ${(props) => props.focus ? "solid" : "none"};
+    border-style: ${(props) => props.focus};
     
     &:hover {
             opacity:0.8;
@@ -65,7 +65,7 @@ export function DownloadHistoryPostCard(props) {
     return (
         <>
             <PostContainer onClick={handleClick}> 
-                <ImageWrapper src={post.imageUrl} focus={clickedPost == post.postId}/>
+                <ImageWrapper src={post.imageUrl} focus={clickedPost == post.postId ? "solid" : "none"}/>
                 <TitleWrapper >{post.title}</TitleWrapper>
             </PostContainer>
         </>
