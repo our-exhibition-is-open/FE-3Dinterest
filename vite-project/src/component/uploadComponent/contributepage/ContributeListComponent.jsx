@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { PostModel } from "../../../model";
 import { ContributePost } from "../../mainpage/modalComponent/ContributePost";
 import { getContributeListApi } from "../../../api/getContributeListApi";
+import { DownloadHistoryPostCard } from "./DownloadHistoryPostCard";
 
 const DetailBar = styled.div`
   height: 12.5rem;
@@ -33,23 +34,16 @@ const Container = styled.div`
   }
 `;
 
-export function ContributeListComponent() {
+export function ContributeListComponent({setClickedPost}) {
   const [postList, setPostList] = useState([]);;
 
   useEffect(() => {
     getContributeListApi(1)
     .then((response) => {
-      const ResponseDataList = JSON.parse(response).map(
-        (data) => new PostModel(data)
-      );
-
+      const ResponseDataList = JSON.parse(response).map((data) => new PostModel(data));
       setPostList(
         ResponseDataList.map((data, index) => (
-          <div
-            key={index} 
-          >
-            <ContributePost post={data} />
-          </div>
+            <DownloadHistoryPostCard key={index} post={data}/>
         ))
       );
     })
