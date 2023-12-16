@@ -31,8 +31,8 @@ export function ContributeComponent() {
     if (uploadState && clickedPost) {
       postUploadApi(file, thumbnailImage, new UploadModel(title, userId))
         .then((response) => {
-          const uploadPost = JSON.parse(response.data);
-          postContributeApi(uploadPost.post_id,clickedPost)
+          const uploadPostId = JSON.parse(response.data);
+          postContributeApi(uploadPostId,clickedPost)
             .then((response) => {
               if (response.status == 200) {
                 alert("업로드 성공 !");
