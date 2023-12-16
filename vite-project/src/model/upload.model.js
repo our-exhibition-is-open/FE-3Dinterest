@@ -1,7 +1,7 @@
 export class UploadModel {
   constructor(title, userId) {
     this.title = title;
-    this.userId = userId;
+    this.user_id = userId;
     this.tagA = false;
     this.tagB = false;
     this.tagC = false;
