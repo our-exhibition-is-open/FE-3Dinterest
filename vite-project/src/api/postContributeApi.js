@@ -1,7 +1,8 @@
 import axiosInstance from "./instance";
 
-export async function postContributeApi(parentId) {
+export async function postContributeApi(postId, parentId) {
   const response = await axiosInstance.post(`/contribute_record`, {
+    post_id: postId,
     parent_id: parentId,
   },{
     headers: {

@@ -29,27 +29,27 @@ export function ContributeComponent() {
   const { clickedPost } = useDownloadHistory();
   function handleContribute() {
     if (uploadState && clickedPost) {
-      postUploadApi(file, thumbnailImage, new UploadModel(title, userId)).then(
-        (response) => {
-          if (response.status == 200) {
-            postContributeApi(clickedPost).then((response) => {
+      postUploadApi(file, thumbnailImage, new UploadModel(title, userId))
+        .then((response) => {
+          const uploadPost = JSON.parse(response.data);
+          postContributeApi(uploadPost.post_id,clickedPost)
+            .then((response) => {
               if (response.status == 200) {
                 alert("업로드 성공 !");
                 navigator("/mainpage");
+              } else {
+                alert("컨트리뷰트 api 통신 중 서버 오류. 다시 시도해 주세요");
               }
-              else {
-                alert("컨트리뷰트 api 통신 중 서버 오류. 다시 시도해 주세요");  
-              }
-            }).catch((e) => {
+            })
+            .catch((e) => {
               console.error("contribute record api error : ", e);
               alert("컨트리뷰트 api 통신 중 서버 오류. 다시 시도해 주세요");
             });
-          }
-        }
-      ).catch((e) => {
-        console.error("upload api error : ", e);
-        alert("서버 통신 중 에러 발생. upload api error");
-      });
+        })
+        .catch((e) => {
+          console.error("upload api error : ", e);
+          alert("서버 통신 중 에러 발생. upload api error");
+        });
     } else {
       alert("파일과 제목 그리고 다운로드 기록을 선택해주세요.");
       navigator("/contribute");
