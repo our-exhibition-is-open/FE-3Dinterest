@@ -4,16 +4,16 @@ import { styled } from "styled-components";
 import { PostModel } from "../../model";
 import { PostCardMain } from "./PostCardMain";
 import { getPostListApi } from "../../api/getPostListApi";
-import { ModalBackground, PostModal } from "./modal/PostModal";
+import { ModalBackground, PostModal } from "./modalComponent/PostModal";
 
 const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   z-index: 3;
-  margin-top: 3%;
+  margin-top: 6%;
   gap: 1.1rem;
-  width: 65rem;
+  width: 80rem;
 `;
 
 export function PostList(props) {
@@ -21,8 +21,8 @@ export function PostList(props) {
 
   useEffect(() => {
     getPostListApi().then((response) => {
-      setDataList(response);
-      console.log(response[1]);
+      const parsedJson = JSON.parse(response);
+      setDataList(parsedJson);
     });
   }, []);
 

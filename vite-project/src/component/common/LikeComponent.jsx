@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { postLikeApi } from "../../api/postLikeApi";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ export function LikeComponent(props) {
   const [isHovering, setIsHovering] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const navigate = useNavigate();
+
   function handleCilck() {
     if (props.isLogged) {
       setIsLiked(!isLiked);

@@ -6,14 +6,14 @@ import { InputComponent } from "../component/common/InputComponent";
 import {
   checkingSubmitValue,
   checkingValue,
-} from "../util/register/checkingValue";
+} from "../util/registerUtil/checkingValue";
 import {
   BackgroundContainer,
   MainBackground,
-} from "../component/threejs/MainBackground";
+} from "../component/threejsComponent/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
-import { LogoContainer } from "../component/common/LogoComponent";
-import { useUserStore } from "../model/userStore";
+import LogoComponent from "../component/common/LogoComponent";
+import { postLoginApi } from "../api/postLoginApi";
 
 const CommonText = styled.div`
   z-index: 1;
@@ -74,7 +74,6 @@ export function LoginPage({ setLoginSuccess }) {
   });
   const [buttonState, setButtonState] = useState(false);
 
-  const { isLoggedIn, userId, loginUser } = useUserStore();
 
   const navigate = useNavigate();
 
@@ -87,15 +86,30 @@ export function LoginPage({ setLoginSuccess }) {
     setButtonState(checkingSubmitValue(properCount));
   }
 
-  function handlingSubmit() {
-    sessionStorage.setItem("userId", value.id);
-    sessionStorage.setItem("isLoggedIn", true);
-    navigate("/");
+  function handlingSubmit(e) {
+    e.preventDefault();
+    const enteredId = value.id;
+    const enteredPw = value.pw;
+    postLoginApi(enteredId, enteredPw).then((response) => {
+      console.log(response.status);
+      if(response.status == 200)
+      {
+        alert("logined !!! ")
+        sessionStorage.setItem("userId", enteredId);
+        sessionStorage.setItem("isLoggedIn", true);
+        navigate("/");
+      }
+      else if(response.status == 400)
+      {
+        alert("비밀번호 혹은 아이디를 다시 확인해주세요");
+      }
+    }).catch((e) => {
+      console.log(e);
+      alert("비밀번호 혹은 아이디를 다시 확인해주세요");
+    });
   }
 
-  function handleClickLogo() {
-    navigate("/");
-  }
+  
 
   return (
     <>
@@ -104,9 +118,9 @@ export function LoginPage({ setLoginSuccess }) {
           <MainBackground />
         </BackgroundContainer>
 
-        <LogoContainer onClick={handleClickLogo}>3Dinterest</LogoContainer>
+        <LogoComponent/>
 
-        <form onSubmit={handlingSubmit}>
+        <form onSubmit={(e) => handlingSubmit(e)}>
           <ContentsContainer>
             <InputComponent
               inputType="text"

@@ -1,8 +1,8 @@
 import axiosInstance from './instance';
 
-async function getPostListApi(userId) {
-    const response = await axiosInstance.get('/');
-    console.log("good")
+async function getPostListApi() {
+    const response = await axiosInstance.get('/postlist');
+    
     return await response.data;
 }
 

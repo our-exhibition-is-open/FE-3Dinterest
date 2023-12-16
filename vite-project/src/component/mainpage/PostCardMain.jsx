@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
-import { ModalBackground, PostModal } from "./modal/PostModal";
+import { ModalBackground, PostModal } from "./modalComponent/PostModal";
 import { LikeComponent } from "../common/LikeComponent";
 import { postLikeApi } from "../../api/postLikeApi";
 
@@ -23,7 +23,7 @@ export const TitleWrapper = styled.div`
   font-family: "SF-Pro-Rounded-Regular";
   font-size: 1rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   line-height: normal;
   letter-spacing: 0.02844rem;
 

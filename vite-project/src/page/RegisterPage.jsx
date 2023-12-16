@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { useNavigate, Link } from "react-router-dom";
 
 import { InputComponent } from "../component/common/InputComponent";
-import { checkingSubmitValue, checkingValue} from "../util/register/checkingValue";
-import {BackgroundContainer, MainBackground } from "../component/threejs/MainBackground";
+import { checkingSubmitValue, checkingValue} from "../util/registerUtil/checkingValue";
+import {BackgroundContainer, MainBackground } from "../component/threejsComponent/MainBackground";
 import { SubmitButton } from "../component/common/SubmitButton";
-import { LogoContainer } from "../component/common/LogoComponent";
+import LogoComponent from "../component/common/LogoComponent";
+import { registerUser } from "../util/registerUtil/registerUser";
 
 const CommonText = styled.div`
     z-index: 1;
@@ -73,11 +74,15 @@ export function RegisterPage() {
     }
 
     function handlingSubmit() {
-        navigate('/login');
-    }
-
-    function handleClickToMain () {
-        navigate('/');
+        if(registerUser(value.id, value.pw))
+        {
+            alert("회원가입 성공 ! 로그인을 해주세요.");
+            navigate('/login');
+        }
+        else
+        {
+            alert("중복된 아이디입니다.");
+        }
     }
 
     return (
@@ -87,9 +92,7 @@ export function RegisterPage() {
                 <MainBackground/>
             </BackgroundContainer>
             
-            <LogoContainer onClick={handleClickToMain}>
-            3Dinterest
-            </LogoContainer>
+            <LogoComponent/>
             
             <form onSubmit={handlingSubmit}> 
                 <ContentsContainer>
