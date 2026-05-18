@@ -77,36 +77,38 @@ export function LoginPage({ setLoginSuccess }) {
 
   const navigate = useNavigate();
 
-  function onChangeValue(value, properCount, type) {
-    setValue(value);
-    properCount[type] = checkingValue(value, type) ? true : false;
-    setProperCount(properCount);
-    properCount["pwValid"] = true;
-    properCount["email"] = true;
-    setButtonState(checkingSubmitValue(properCount));
+  function onChangeValue(newValue, currentProperCount, type) {
+    setValue(newValue);
+    
+    const updatedProperCount = { ...currentProperCount };
+    updatedProperCount[type] = checkingValue(newValue, type) ? true : false;
+    updatedProperCount["pwValid"] = true;
+    updatedProperCount["email"] = true;
+    
+    setProperCount(updatedProperCount);
+    setButtonState(checkingSubmitValue(updatedProperCount));
   }
 
   function handlingSubmit(e) {
     e.preventDefault();
     const enteredId = value.id;
     const enteredPw = value.pw;
-    postLoginApi(enteredId, enteredPw).then((response) => {
-      console.log(response.status);
-      if(response.status == 200)
-      {
-        alert("logined !!! ")
-        sessionStorage.setItem("userId", enteredId);
-        sessionStorage.setItem("isLoggedIn", true);
-        navigate("/");
-      }
-      else if(response.status == 400)
-      {
-        alert("비밀번호 혹은 아이디를 다시 확인해주세요");
-      }
-    }).catch((e) => {
-      console.log(e);
-      alert("비밀번호 혹은 아이디를 다시 확인해주세요");
-    });
+
+    postLoginApi(enteredId, enteredPw)
+      .then((response) => {
+        if (response.status === 200) {
+          alert("로그인 성공!");
+          sessionStorage.setItem("userId", enteredId);
+          sessionStorage.setItem("isLoggedIn", "true");
+          navigate("/");
+        } else if (response.status === 400) {
+          alert("비밀번호 혹은 아이디를 다시 확인해주세요");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+      });
   }
 
   

@@ -22,14 +22,21 @@ export const handlers = [
 
     return new HttpResponse(null, { status: 200 });
   }),
-  http.post("/api/login", async ({ request }) => {
-    const requestBody = await request.json();
-    console.log(requestBody);
-    if (checkingUser(requestBody.id, requestBody.pw))
-      return new HttpResponse(null, { status: 200 });
-    else {
-      console.log("testestset");
-      return new HttpResponse(null, { status: 400 });
+  
+  http.post('/api/login', async ({ request }) => {
+    const { id, pw } = await request.json();
+    const storedUsers = JSON.parse(localStorage.getItem("storedUserData")) || [];
+    const foundUser = storedUsers.find(user => user.id === id);
+
+    if (foundUser && foundUser.pw === pw) {
+      return HttpResponse.json({
+        message: "Login Success",
+        token: "mock-jwt-token-abcd1234"
+      }, { status: 200 });
+    } else {
+      return HttpResponse.json({
+        message: "Invalid ID or Password"
+      }, { status: 400 });
     }
   }),
   http.post("/download", async ({request}) => {
